@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/night.css">
+  <link rel="stylesheet" href="plugin/highlight/style/monokai-sublime.css">
+  <meta charset="utf-8"/>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+
+  <section id="title">
+    <img src="images/cbrain-large_white_alpha.png" class="cbblue">
+    <h2>A Quick Tour</h2>
+    Pierre Rioux
+    <br>
+    <span>ACElab Developer Meeting, June 2018</span>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="toc">
+    <h2>A presentation in three parts:</h2>
+    <ol>
+      <li>Quick intro to Ruby</li>
+      <li>Quick intro to Rails</li>
+      <li>CBRAIN as a platform</li>
+    </ol>
+    <p>
+    All of this, prepared for experienced programmers.
+  </section>
+
+</section>
+
+<!-- ############################## -->
+<!-- ############################## -->
+<!-- ############################## -->
+
+<section>
+
+  <section id="ruby1">
+    <h2>Ruby</h2>
+    <ul>
+      <li>Fully object-oriented</li>
+      <li>Single inheritance</li>
+      <li><em>Everything</em> is an object:<br>
+        <ul>
+          <li>Numbers are objects</li>
+          <li>Strings are objects</li>
+          <li>Methods are objects</li>
+          <li>Classes are objects</li>
+          <li>Operators are objects</li>
+          <li>Code blocks are objects</li>
+          <li>etc</li>
+        </ul>
+      </li>
+      <li>Semicolons ( <i>;</i> ) are optional</li>
+      <li>Parenthesis for method args are optional</li>
+    </ul>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="ruby2">
+    <h2>A few Ruby statements</h2>
+    <p>
+    <pre class="transp"><code class="ruby" data-trim>
+"abcd".size    # returns 4
+3.1415.to_s    # returns "3.1415"
+
+class Example
+  def self.hello
+    puts "I'm a class method"
+  end
+
+  def hello
+    puts "I'm an instance method"
+  end
+end
+
+Example.hello    # prints "I'm a class method"
+Example.hello()  # prints "I'm a class method"
+
+obj = Example.new
+obj.hello        # prints "I'm an instance method"
+    </code></pre>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="ruby3">
+    <h2>Objects are NOT data containers</h2>
+    Unlike in, say, JavaScript, objects do not store key/values.
+    <p>
+    <ul>
+      <li>Getters and setter methods need to be created</li>
+      <li>Data is stored in <em>instance variables</em></li>
+      <li>They look like <strong>@variable_name</strong></li>
+    </ul>
+    <p>
+    <pre class="transp"><code class="ruby" data-trim>
+class Example
+  def set_name(value)
+    @name=value
+  end
+
+  def name
+    return @name  # the 'return' is optional
+  end
+end
+
+obj1 = Example.new
+obj1.set_name("Saturn V rocket")
+obj2 = Example.new()
+obj2.set_name "Titanic"
+puts obj2.name     # prints 'Titanic'
+    </code></pre>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="ruby4">
+    <h2>Symbols</h2>
+    A special data type unique to Ruby are <em>symbols</em>
+    <p>
+    They look like <strong>:symbolname</strong>
+    <p>
+    They basically are used as fast replacement for constant strings.
+    <p>
+    They are NOT strings, but can be transformed into strings.
+    <p>
+    <pre class="transp"><code class="ruby" data-trim>
+myvariable = :hello
+
+obj = SomeClass.new
+obj.some_method  "all_ok"
+obj.other_method :all_ok
+
+:rockets_are_cool.to_s   # returns "rockets_are_cool"
+    </code></pre>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="ruby5">
+    <h2>Hash and array literals</h2>
+    They pretty much look like those in Perl or Python
+    <p>
+    <pre class="transp"><code class="ruby" data-trim>
+mixed_hash  = { "abcd" => 23, :defg => "aa", 34 => 41 }
+
+symbol_hash = { :abcd  => 23, :defg => "aa" }
+
+symbol_hash = { abcd:     23, defg:    "aa" } # alternative syntax when keys are all symbols
+
+mixed_array = [ 'abcd', 99, Object.new, { "a" => 1 }, :yoshi ]  # array of 5 elements
+    </code></pre>
+   When a hash is the last argument of a method call,<br>
+   the <i>{</i> and <i>}</i> are optional
+   <p>
+    <pre class="transp"><code class="ruby" data-trim>
+obj.dostuff(23, "hello", { :name => "pierre", :age => 76 })
+
+obj.dostuff(23, "hello",   :name => "pierre", :age => 76  ) # 3 arguments, not 4
+
+obj.dostuff 23, "hello", name: "pierre", age: 76
+    </code></pre>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="ruby6">
+    <h2>Method names with <i>?</i> or <i>!</i></h2>
+    These two characters can appear only as<br>
+    the <em>last</em> character in a method name.
+    <p>
+    Their use is often esthetic.
+    <p>
+    <pre class="transp"><code class="ruby" data-trim>
+class Something
+  def is_alive?
+    blah blah
+  end
+
+  def validate!(mode = :relax)  # argument has default value
+    blah blah
+  end
+end
+
+a_something.is_alive?
+
+a_something.validate!          # inside, mode is :relax
+a_something.validate! :strict  # now it's :strict
+
+x="hello"
+x.sub("lo","p")  # returns "help" and doesn't change x
+x.sub!("lo","p") # returns "help" and change x to "help"
+    </code></pre>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="ruby7">
+    <h2>Assignment methods with <i>=</i></h2>
+    For a more elegant syntax, methods can be invoked as assignment.
+    <p>
+    <pre class="transp"><code class="ruby" data-trim>
+
+# Method with one argument, invoked in the traditional way
+
+def standard(value)
+  do_something_with value
+end
+
+obj.standard("hello")
+
+# Method with one argument, invoked as an assignment
+
+def assignment=(value)  # note the '=' is part of the method name!
+  do_something_with value
+end
+
+obj.assignment = "hello"  # the method is "assignment="; spaces are allowed within!
+    </code></pre>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="ruby8">
+    <h2>Most operators are methods</h2>
+    So they can be overriden for your classes
+    <p>
+    <pre class="transp"><code class="ruby" data-trim>
+class Something
+
+  def name=(arg)
+    @name=arg
+  end
+
+  def +(rightside)
+    [ @name , rightside.name ]
+  end
+
+end
+
+v1 = Something.new; v1.name = "Marilyn"
+v2 = Something.new; v2.name = "Monroe"
+v1 + v2         # returns [ "Marylin", "Monroe" ]
+v1 + a_user     # returns [ "Marylin", "Robert" ] assuming a_user has a name() method.
+    </code></pre>
+  <p>
+   Many operators can be redefined that way:<br>
+   <i>+</i>, <i>-</i>, <i>*</i>, <i>|</i>, <i>&</i>, <i>+=</i>, <i>-=</i>,
+   <i>&lt;&lt;</i>, <i>&gt;&gt;</i>, <i>&gt;&gt;=</i>, etc
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="ruby9">
+    <h2>Code blocks for methods</h2>
+    <ul>
+      <li><em>All</em> methods can take an <em>optional</em> code block as a final argument</li>
+      <li><i>It is one of the essential distinguishing feature of Ruby</i></li>
+      <li>Methods are free to ignore the block, or call it multiple times</li>
+      <li>Blocks are written with the <strong>do ... end</strong> or <strong>{ ... }</strong> syntax</li>
+    </ul>
+    <pre class="transp"><code class="ruby" data-trim>
+obj.mymethod(arg1,arg2) do
+  codeblock1
+  codeblock2
+end
+
+obj.mymethod(arg1,arg2) {  # same as do .. end
+  codeblock1
+  codeblock2
+}
+
+244.to_s(16) do
+  puts "This is never executed"
+end  # returns the string "f4" which is 244 in hexadecimal
+
+244.to_s(16) { a = 2 + 3 ; system.reboot }  # returns "f4" again
+    </code></pre>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="ruby10">
+    <h2>Arguments to blocks</h2>
+    Blocks can be passed arguments with the <em>|var1,var2...|</em> syntax
+    <p>
+    <pre class="transp"><code class="ruby" data-trim>
+# Prints three lines:
+#  Z
+#  4
+#  +
+["Z", "4", "+"].each { |c| puts c } # each() is an Array method for iterating
+
+# Prints three lines:
+#  Z0
+#  41
+#  +2
+["Z", "4", "+"].each_with_index do |c,i|
+   puts(c + i.to_s)
+do
+    </code></pre>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="ruby11">
+    <h2>Blocks are invoked with <strong>yield</strong></h2>
+    <p>
+    <pre class="transp"><code class="ruby" data-trim>
+class Something
+  def invoke_and_save
+    @save = yield
+  end
+
+  def invoke_with_pi
+    yield(3.14)
+  end
+
+  def vowels
+    yield('a') ; yield('e') ; yield('i') ; yield('o') ; yield('u')
+  end
+end
+
+obj=Something.new
+obj.invoke_and_save { "Hello " + 3.to_s }  # internally, @save is now "Hello 3"
+obj.invoke_with_pi { |value| puts "I got " + value.to_s } # prints "I got 3.14"
+pi_plus_2 = obj.invoke_with_pi { |value| value + 2 }      # stores  5.14 in pi_plus_2
+obj.vowels { |v| puts v }  # block is executed five times
+    </code></pre>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="ruby12">
+    <h2>Methods can save the block for later use</h2>
+    <p>
+    <pre class="transp"><code class="ruby" data-trim>
+class Something
+  def saveblock(&block)  # special syntax to associate an argument to the block
+    @call_this_later = block
+  end
+
+  def invoke_saved_block(argument)
+    @call_this_later.call(argument)
+  end
+end
+
+obj = Something.new
+obj.saveblock { |x| puts "The string has " + x.size + " characters" }
+obj.invoke_saved_block "hello"  # prints "The string has 5 characters"
+obj.saveblock { |x| x.reverse }
+obj.invoke_saved_block "hello"  # returns (without printing it) "olleh"
+    </code></pre>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="ruby13">
+    <h2>Intercepting missing methods</h2>
+    <p>
+    <pre class="transp"><code class="ruby" data-trim>
+class Something
+  def method_missing(name,*args) # * is the splat operator for varargs
+    puts "Eh bud, I got method #{name} but it doesn't exist."
+  end
+end
+
+obj=Something.new
+obj.oh_no!('sorry man')  # prints "Eh bud, I got method oh_no! but it does't exist."
+    </code></pre>
+    <p>
+    This is often use to provide <em>dynamic</em> capabilities to classes.
+    <p>
+    Methods can be created the first time they are missing, and then the
+    following times the method will exist and will respond quickly.
+    <pre class="transp"><code class="ruby" data-trim>
+# Rails example:
+User.find_by_login('prioux')  # there is no such method, but it's created right away
+User.find_by_login('mmonroe') # now the method does exist.
+    </code></pre>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="ruby14">
+    <h2>Domain Specific Languages</h2>
+    Ruby's syntactic flexibility makes it ideal for elegant <em>DSL</em>s.
+    <pre class="transp"><code class="ruby" data-trim>
+# This is Ruby code:
+This is ruby code
+
+# It's executed as:
+This(is(ruby(code())))
+
+# A DSL I made up to describe a SQL table.
+# It is Ruby code that assumes the methods
+# "table", "column", "type" etc have been defined elsewhere.
+table "users" do
+  column :login do
+    type :string
+    length 256
+  end
+  column id
+  has_many do
+    other_table "files"
+    remote_key :user_id
+  end
+end
+    </code></pre>
+  </section>
+
+</section>
+
+<!-- ############################## -->
+<!-- ############################## -->
+<!-- ############################## -->
+
+<section>
+
+  <section id="rails1">
+    <h2>Rails</h2>
+    <ul>
+      <li>A framework for creating web applications</li>
+      <li>Follows the Model-View-Controller (<em>MVC</em>) architecture</li>
+      <li>Database abstraction: <strong>ActiveRecord</strong></li>
+      <li>Provides helpers for routing, migrations, views</li>
+      <li>Multi-layer middleware with the web server at the top</li>
+      <li>Normally (and originally) developed in Ruby (thus, "<em>RoR</em>")</li>
+      <li>Immense autoconfiguration and meta-programming core</li>
+      <li>"Convention over configuration"</li>
+    <ul>
+  </section>
+
+<section id="TODO">
+remove this
+- given a DB
+  - model
+    - make class lt ApplicationRecord
+    - finder methods
+    - attribute access
+    - validations
+    - callbacks
+  - assoc
+  - auto assoc methods
+  - STI
+
+- multi environments
+  
+ls
+c
+</section>
+
+<!-- ****************************** -->
+
+  <section id="rails2">
+    <h2>xxx</h2>
+<pre data-trim>
+mysql> select * from authors;
++----+------------+-----------+
+| id | first_name | last_name |
++----+------------+-----------+
+|  1 | Pierre     | Rioux     |
+|  2 | Jane       | Austen    |
+|  3 | Samir      | Das       |
++----+------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select * from books;
++----+--------------------------------+-----------+--------------+
+| id | title                          | author_id | published_at |
++----+--------------------------------+-----------+--------------+
+|  1 | How to cheat at origami        |         1 | 2018-01-03   |
+|  2 | Pride And Potatoes             |         2 | 1798-04-21   |
+|  3 | Some sunglasses for Kiki       |         3 | 1995-05-10   |
+|  4 | Kiki vs the sunglasses tyrants |         3 | 2005-11-21   |
+|  5 | The sunglasses of God          |         3 | 2015-12-04   |
++----+--------------------------------+-----------+--------------+
+5 rows in set (0.00 sec)
+</pre>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="rails3">
+    <h2>xxx</h2>
+  </section>
+
+</section>
+
+    </div>
+  </div>
+
+<!-- ############################## -->
+<!-- ############################## -->
+<!-- ############################## -->
+
+  <!-- Declares a filter to turn white into CBRAIN blue, #05A3D6 -->
+
+  <svg height="0">
+    <filter id="cbrainblue">
+      <feColorMatrix values="0.0196 0.0    0.0    0 0
+                             0.0    0.6392 0.0    0 0
+                             0.0    0.0    0.8392 0 0
+                             0      0      0      1 0"/>
+    </filter>
+  </svg>
+
+  <!-- Main reveal.js setup -->
+
+  <script src="lib/js/head.min.js"></script>
+  <script src="js/reveal.js"></script>
+  <script src="plugin/highlight/highlight.js"></script>
+  <script>
+    Reveal.initialize(
+    { slideNumber: true, history: true }
+    );
+    hljs.initHighlightingOnLoad();
+  </script>
+
+  <!-- Styles -->
+
+  <style>
+
+    /* Headers */
+
+    .reveal h1,
+    .reveal h2,
+    .reveal h3,
+    .reveal h4,
+    .reveal h5 {
+      color: #ffffff;
+      text-shadow: 0.0em 0.0em 0.2em #0cc;
+    }
+
+    /* Text styles: em, strong, b, i */
+
+    /* EM is for emphasis in prose */
+    .reveal em {
+      color: yellow;
+      font-style: normal; /* yes please! */
+    }
+    /* STRONG is for literal tech keywords in prose */
+    .reveal strong {
+      color: #0ff;  /* funny, I'm using RGB with only three digits today */
+    }
+    .reveal b {
+      color: #00f;
+    }
+    /* I is to highlight single characters or short tokens */
+    .reveal i {
+      color: #f00;
+      font-style: normal; /* yes please! */
+    }
+
+    /* Misc */
+
+    .reveal section img {
+      background: transparent;
+      border: none;
+      box-shadow: none;
+    }
+    .reveal section img.cbblue {
+      filter: url(#cbrainblue);
+    }
+    .reveal pre {
+      background: #033;
+      padding: 0.2em 0.5em 0.3em 0.5em;
+      width: auto;
+    }
+    .reveal pre.compact {
+      display: inline-block;
+    }
+    .reveal pre.large {
+      font-size: 120%;
+    }
+    .reveal pre.medium {
+      font-size: 100%;
+    }
+    .reveal pre.supersmall {
+      font-size: 40%;
+    }
+    .reveal pre > code.nomaxheight {
+      max-height: none;
+    }
+    .reveal .cell {
+      display: table-cell;
+    }
+    .reveal th {
+      color: #0aa;
+    }
+    .reveal .transp {
+      background-color: transparent;
+    }
+    .reveal .smallcontent tr td {
+      font-size: 70%;
+    }
+
+    .reveal em.regex {
+      font-size: 150%;
+    }
+
+    .reveal em.smallregex {
+      font-size: 100%;
+    }
+
+  </style>
+</body>
+
+</html>
