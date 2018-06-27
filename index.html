@@ -27,9 +27,9 @@
   <section id="toc">
     <h2>A presentation in three parts:</h2>
     <ol>
-      <li>Quick intro to Ruby</li>
-      <li>Quick intro to Rails</li>
-      <li>CBRAIN as a platform</li>
+      <li>Quick intro to Ruby (14 slides)</li>
+      <li>Quick intro to Rails (17 slides)</li>
+      <li>CBRAIN as a platform (9213 slides)</li>
     </ol>
     <p>
     All of this, prepared for experienced programmers.
@@ -152,21 +152,21 @@ obj.other_method :all_ok
     They pretty much look like those in Perl or Python
     <p>
     <pre class="transp"><code class="ruby" data-trim>
-mixed_hash  = { "abcd" => 23, :defg => "aa", 34 => 41 }
+mixed_hash  = { "abcd" =&gt; 23, :defg =&gt; "aa", 34 =&gt; 41 }
 
-symbol_hash = { :abcd  => 23, :defg => "aa" }
+symbol_hash = { :abcd  =&gt; 23, :defg =&gt; "aa" }
 
 symbol_hash = { abcd:     23, defg:    "aa" } # alternative syntax when keys are all symbols
 
-mixed_array = [ 'abcd', 99, Object.new, { "a" => 1 }, :yoshi ]  # array of 5 elements
+mixed_array = [ 'abcd', 99, Object.new, { "a" =&gt; 1 }, :yoshi ]  # array of 5 elements
     </code></pre>
    When a hash is the last argument of a method call,<br>
    the <i>{</i> and <i>}</i> are optional
    <p>
     <pre class="transp"><code class="ruby" data-trim>
-obj.dostuff(23, "hello", { :name => "pierre", :age => 76 })
+obj.dostuff(23, "hello", { :name =&gt; "pierre", :age =&gt; 76 })
 
-obj.dostuff(23, "hello",   :name => "pierre", :age => 76  ) # 3 arguments, not 4
+obj.dostuff(23, "hello",   :name =&gt; "pierre", :age =&gt; 76  ) # 3 arguments, not 4
 
 obj.dostuff 23, "hello", name: "pierre", age: 76
     </code></pre>
@@ -406,11 +406,11 @@ This(is(ruby(code())))
 # It is Ruby code that assumes the methods
 # "table", "column", "type" etc have been defined elsewhere.
 table "users" do
+  column :id
   column :login do
     type :string
     length 256
   end
-  column id
   has_many do
     other_table "files"
     remote_key :user_id
@@ -427,7 +427,7 @@ end
 
 <section>
 
-  <section id="rails1">
+  <section id="rails">
     <h2>Rails</h2>
     <ul>
       <li>A framework for creating web applications</li>
@@ -441,31 +441,18 @@ end
     <ul>
   </section>
 
-<section id="TODO">
-remove this
-- given a DB
-  - model
-    - make class lt ApplicationRecord
-    - finder methods
-    - attribute access
-    - validations
-    - callbacks
-  - assoc
-  - auto assoc methods
-  - STI
-
-- multi environments
-  
-ls
-c
 </section>
 
-<!-- ****************************** -->
+<!-- ############################## -->
+<!-- ############################## -->
+<!-- ############################## -->
 
-  <section id="rails2">
-    <h2>xxx</h2>
-<pre data-trim>
-mysql> select * from authors;
+<section>
+
+  <section id="models1">
+    <h2>Models: let's start with a DB</h2>
+    <pre data-trim>
+mysql&gt; select * from authors;
 +----+------------+-----------+
 | id | first_name | last_name |
 +----+------------+-----------+
@@ -475,7 +462,7 @@ mysql> select * from authors;
 +----+------------+-----------+
 3 rows in set (0.00 sec)
 
-mysql> select * from books;
+mysql&gt; select * from books;
 +----+--------------------------------+-----------+--------------+
 | id | title                          | author_id | published_at |
 +----+--------------------------------+-----------+--------------+
@@ -486,13 +473,455 @@ mysql> select * from books;
 |  5 | The sunglasses of God          |         3 | 2015-12-04   |
 +----+--------------------------------+-----------+--------------+
 5 rows in set (0.00 sec)
-</pre>
+    </pre>
   </section>
 
 <!-- ****************************** -->
 
-  <section id="rails3">
-    <h2>xxx</h2>
+  <section id="models2">
+    <h2>Model conventions</h2>
+    <ul>
+      <li>Primary key is <em>id</em></li>
+      <li>Table name is pluralized</li>
+      <li><strong>Attributes</strong> (columns) are lowercase simple identifiers</li>
+      <li>Model names will be singular of table name (e.g. <em>Author</em>, <em>Book</em>)</li>
+      <li>Relation use <strong>othermodel_id</strong> (e.g. <em>author_id</em>)</li>
+    </ul>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="models3">
+    <h2>Ruby classes for the models</h2>
+    <center>
+    <div class="cell">
+      <small><em>app/models/author.rb</em></small>
+      <pre class="transp"><code class="ruby" data-trim>
+class Author &lt; ApplicationRecord
+
+end
+      </code></pre>
+    </div>
+    <div class="cell">
+    &nbsp; &nbsp; &nbsp;
+    </div>
+    <div class="cell">
+      <small><em>app/models/book.rb</em></small>
+      <pre class="transp"><code class="ruby" data-trim>
+class Book &lt; ApplicationRecord
+
+end
+      </code></pre>
+    </div>
+    </center>
+    <p>
+    These files are shown complete!
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="models4">
+    <h2>Model methods</h2>
+    <pre class="transp"><code class="ruby" data-trim>
+# Creating new records
+n = Book.new( :title =&gt; 'My Stupid Cat', :author_id =&gt; 23 )
+
+# Finder mehods
+a = Author.find(2)    # Jane Austen
+b = Book.find(4)      # "Kiki vs the sunglasses tyrants"
+
+# Attribute methods
+first_name = a.first_name       # Get an attribute
+b.title    = 'Of mice and Xen'  # Set an attribute
+
+# Saving or destroying an object
+n.save     # Writes new row in database
+n.destroy  # Removes row
+
+# Misc
+b.valid?
+b.changed?      # True if modified in memory
+n.new_record?   # Returns true until saved
+    </code></pre>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="models5">
+    <h2>Querying</h2>
+    <pre class="transp"><code class="ruby" data-trim>
+# Create querying objects with WHERE clauses
+r1 = Author.where(:last_name =&gt; 'Das')  # does NOT query yet
+r2 = r1.where(:first_name =&gt; 'Beyonc&eacute;')
+
+# SELECT `authors`.* FROM `authors` WHERE `authors`.`last_name` = 'Das'
+a_list = r1.to_a  # Array of Author objects
+
+# SELECT  `authors`.* FROM `authors`
+#   WHERE `authors`.`last_name` = 'Das'
+#   ORDER BY `authors`.`id` ASC LIMIT 1
+a1 = r1.first
+
+# SELECT  `authors`.* FROM `authors`
+#   WHERE `authors`.`last_name` = 'Das'
+#     AND `authors`.`first_name` = 'Beyonc&eacute;'
+#   ORDER BY `authors`.`id` DESC LIMIT 1
+a2 = r2.last  # returns nil in this case
+
+# SELECT COUNT(*) FROM `authors` WHERE `authors`.`last_name` = 'Das'
+das_count = r1.count
+    </code></pre>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="models6">
+    <h2>Relations</h2>
+    <center>
+    <div class="cell">
+      <small><em>app/models/author.rb</em></small>
+      <pre class="transp"><code class="ruby" data-trim>
+class Author &lt; ApplicationRecord
+  has_many :books
+end
+      </code></pre>
+    </div>
+    <div class="cell">
+    &nbsp; &nbsp; &nbsp;
+    </div>
+    <div class="cell">
+      <small><em>app/models/book.rb</em></small>
+      <pre class="transp"><code class="ruby" data-trim>
+class Book &lt; ApplicationRecord
+  belongs_to :author
+end
+      </code></pre>
+    </div>
+    </center>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="models7">
+    <h2>Relation methods</h2>
+    <pre class="transp"><code class="ruby" data-trim>
+a=Author.where(:last_name =&gt; 'Das').first
+#  Author Load (0.9ms)  SELECT  `authors`.* FROM `authors` WHERE
+#     `authors`.`last_name` = 'Das' ORDER BY `authors`.`id` ASC LIMIT 1
+a.books.to_a
+#  Book Load (0.4ms)  SELECT `books`.* FROM `books` WHERE `books`.`author_id` = 3
+' =&gt; [
+   #&lt;Book id: 3, title: "Some sunglasses for Kiki", author_id: 3 ... &gt;,
+   #&lt;Book id: 4, title: "Kiki vs the sunglasses tyrants", author_id: 3 ... &gt;,
+   #&lt;Book id: 5, title: "The sunglasses of God", author_id: 3 ... &gt;
+  ] '
+b=Book.last
+#  Book Load (1.2ms)  SELECT  `books`.* FROM `books` ORDER BY `books`.`id` DESC LIMIT 1
+b.author
+#  Author Load (0.4ms)  SELECT  `authors`.* FROM `authors` WHERE `authors`.`id` = 3 LIMIT 1
+' =&gt; #&lt;Author id: 3, first_name: "Samir", last_name: "Das"&gt; '
+    </code></pre>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="models8">
+    <h2>Validations and callbacks</h2>
+    <img src="images/rails4_ar_callbacks.png">
+    <small><small>
+    From <strong>Agile Web Development with Rails 4</strong>,
+    S. Ruby, D. Thomas, D. H. Hansson, 2014
+    </small></small>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="models9">
+    <h2>Validations and callbacks</h2>
+    <center>
+    <div class="cell">
+      <small><em>app/models/book.rb</em></small>
+      <pre class="transp"><code class="ruby" data-trim>
+class Book &lt; ApplicationRecord
+  belongs_to :author
+  validate_presence_of :published_at
+
+  validates :last_name_has_uppercase?
+
+  after_create :new_book_added
+
+  def last_name_has_uppercase?
+    self.last_name =~ /^[A-Z]/
+  end
+
+  def new_book_added
+    # do something with self only when new book created
+  end
+end
+      </code></pre>
+    </div>
+    </center>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="models10">
+    <h2>Single Table Inheritance</h2>
+    <center>
+    <div class="cell">
+      <small><em>app/models/book.rb</em></small>
+      <pre class="transp"><code class="ruby" data-trim>
+class Book &lt; ApplicationRecord
+end
+      </code></pre>
+    </div>
+    <div class="cell">
+    &nbsp; &nbsp; &nbsp;
+    </div>
+    <div class="cell">
+      <small><em>app/models/novel.rb</em></small>
+      <pre class="transp"><code class="ruby" data-trim>
+class Novel &lt; Book
+end
+      </code></pre>
+    </div>
+    <div class="cell">
+    &nbsp; &nbsp; &nbsp;
+    </div>
+    <div class="cell">
+      <small><em>app/models/biography.rb</em></small>
+      <pre class="transp"><code class="ruby" data-trim>
+class Biography &lt; Book
+end
+      </code></pre>
+    </div>
+    </center>
+    <pre data-trim>
+mysql&gt; select * from books;
++----+--------------------------------------------+-----------+
+| id | type      | title                          | author_id |
++----+--------------------------------------------+-----------+
+|  1 | Book      | How to cheat at origami        |         1 |
+|  2 | Biography | Pride And Potatoes             |         2 |
+|  3 | Novel     | Some sunglasses for Kiki       |         3 |
+|  4 | Novel     | Kiki vs the sunglasses tyrants |         3 |
+|  5 | Novel     | The sunglasses of God          |         3 |
++----+--------------------------------------------+-----------+
+    </pre>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="models11">
+    <h2>Migrations</h2>
+    <ul>
+      <li>Small Ruby programs encode changes</li>
+      <li>No need to issue SQL statements</li>
+      <li>The DB is aware of its migration version number</li>
+      <li>Migrations can be applied and rolled back</li>
+      <li>Migrations can change data, not just schema</li>
+      <li>This is part of a framework for initializing and seeding the DB too</li>
+    </ul>
+    <p>
+    <pre class="transp"><code class="ruby" data-trim>
+class AddSenderIdToMessage &lt; ActiveRecord::Migration
+  def self.up
+    add_column :messages, :sender_id, :integer
+  end
+
+  def self.down
+    remove_column :messages, :sender_id
+  end
+end
+    </code></pre>
+    <small><em>20120530164358_add_sender_id_to_message.rb</em></small>
+  </section>
+
+</section>
+
+<!-- ############################## -->
+<!-- ############################## -->
+<!-- ############################## -->
+
+<section>
+
+  <section id="controllers1">
+    <h2>Controllers</h2>
+    <pre class="transp"><code class="ruby" data-trim>
+class BooksController &lt; ApplicationController
+  def index             # GET /books
+  end
+
+  def show              # GET /books/2
+    id = params[:id]
+  end
+
+  def create            # POST /books
+  end
+
+  def destroy           # DELETE /book/id
+    id = params[:id]
+  end
+
+  def update            # PUT /book/id
+    id = params[:id]
+  end
+end
+    </code></pre>
+    <small><em>app/controllers/books_controller.rb</em></small>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="controllers2">
+    <h2>Routing</h2>
+    <pre class="transp"><code class="ruby" data-trim>
+Rails.application.routes.draw do
+
+  # Routes built manually
+  match "/books"     =&gt; "books#index"
+  match "/books/:id" =&gt; "books#show"  # stores id in params[:id]
+  match "/books"     =&gt; "books#create", :via =&gt; :post
+  # etc
+
+  # This creates about 7 standard CRUD routes for books
+  resources :books
+
+end
+    </code></pre>
+    <small><em>config/routes.rb</em></small>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="controllers3">
+    <h2>Instance variables for views</h2>
+Within a controller method (or '<em>action</em>'),<br>
+instance variables will be available in the view code.
+    <pre class="transp"><code class="ruby" data-trim>
+class BooksController &lt; ApplicationController
+  def show              # GET /books/2
+
+    # Basic, common business logic
+    id = params[:id]
+    @book = Book.find(id) # This can be used in the view code.
+
+    # Rendering control, redirections, etc etc
+    render :action =&gt; :show  # 'app/views/show.*' based on HTTP request
+  end
+end
+    </code></pre>
+    <small><em>app/controllers/books_controller.rb</em></small>
+  </section>
+
+</section>
+
+<!-- ############################## -->
+<!-- ############################## -->
+<!-- ############################## -->
+
+<section>
+
+  <section id="views1">
+    <h2>Views</h2>
+    <pre class="transp"><code class="erb" data-trim>
+&lt;html&gt;
+&lt;head&gt; &lt;/head&gt; &lt;!-- Not normally in view code! --&gt;
+&lt;body&gt;
+Book title: &lt;%= @book.title %&gt;
+Book author: &lt;%= @book.author.first_name %&gt; &lt;%= @book.author.last_name %&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+    </code></pre>
+    <small><em>app/views/books/show.html.erb</em></small>
+    <p>
+    <i>Note:</i> normally, view files render partial content inside other common view templates.
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="views2">
+    <h2>View files for model <em>User</em> in CBRAIN</h2>
+    <pre data-trim>
+&gt; ls -l users
+-rw-r--r--  1 prioux  staff  5755 Dec 12  2017 _users_table.html.erb
+-rw-r--r--  1 prioux  staff  1949 Feb 27  2017 change_password.html.erb
+-rw-r--r--  1 prioux  staff   886 May 13  2015 index.html.erb
+-rw-r--r--  1 prioux  staff   928 May 13  2015 index.js.erb
+-rw-r--r--  1 prioux  staff  3709 Jan 11 12:09 new.html.erb
+-rw-r--r--  1 prioux  staff  1371 Feb 27  2017 request_password.html.erb
+-rw-r--r--  1 prioux  staff  9499 Jun 20 10:11 show.html.erb
+    </pre>
+  </section>
+
+</section>
+
+<!-- ############################## -->
+<!-- ############################## -->
+<!-- ############################## -->
+
+<section>
+
+  <section id="cbrain1">
+    <h2>CBRAIN NOW</h2>
+TO DO ... :-(
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="cbrain2">
+    <h2>TODO</h2>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="cbrain3">
+    <h2>TODO</h2>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="cbrain4">
+    <h2>TODO</h2>
+  </section>
+
+</section>
+
+    </div>
+  </div>
+
+<!-- ############################## -->
+<!-- ############################## -->
+<!-- ############################## -->
+
+  <!-- Declares a filter to turn white into CBRAIN blue, #05A3D6 -->
+
+  <svg height="0">
+    <filter id="cbrainblue">
+      <feColorMatrix values="0.0196 0.0    0.0    0 0
+                             0.0    0.6392 0.0    0 0
+                             0.0    0.0    0.8392 0 0
+                             0      0      0      1 0"/>
+    </filter>
+  </svg>
+
+  <!-- Main reveal.js setup -->
+
+  <script src="lib/js/head.min.js"></script>
+  <script src="js/reveal.js"></script>
+  <script src="plugin/highlight/highlight.js"></script>
+  <script>
+    Reveal.initialize(
+    { slideNumber: true, history: true }
+    );
+    hljs.initHighlightingOnLoad();
+  </script>
+
+  <!-- Styles -->
+
+  <style>
+
+xxx
   </section>
 
 </section>
