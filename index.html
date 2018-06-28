@@ -16,7 +16,7 @@
 
   <section id="title">
     <img src="images/cbrain-large_white_alpha.png" class="cbblue">
-    <h2>A Quick Tour</h2>
+    <h1>A Quick Tour</h1>
     Pierre Rioux
     <br>
     <span>ACElab Developer Meeting, June 2018</span>
@@ -29,7 +29,7 @@
     <ol>
       <li>Quick intro to Ruby (14 slides)</li>
       <li>Quick intro to Rails (17 slides)</li>
-      <li>CBRAIN as a platform (9213 slides)</li>
+      <li>CBRAIN as a platform (214 slides)</li>
     </ol>
     <p>
     All of this, prepared for experienced programmers.
@@ -42,6 +42,11 @@
 <!-- ############################## -->
 
 <section>
+
+  <section id="ruby0">
+    <h1>Ruby</h1>
+    <h3>A programming language</h3>
+  </section>
 
   <section id="ruby1">
     <h2>Ruby</h2>
@@ -84,7 +89,7 @@ class Example
 end
 
 Example.hello    # prints "I'm a class method"
-Example.hello()  # prints "I'm a class method"
+Example.hello()  # same; parens are optional
 
 obj = Example.new
 obj.hello        # prints "I'm an instance method"
@@ -314,7 +319,7 @@ do
 <!-- ****************************** -->
 
   <section id="ruby11">
-    <h2>Blocks are invoked with <strong>yield</strong></h2>
+    <h2>Blocks are invoked with <em>yield</em></h2>
     <p>
     <pre class="transp"><code class="ruby" data-trim>
 class Something
@@ -427,7 +432,12 @@ end
 
 <section>
 
-  <section id="rails">
+  <section id="rails0">
+    <h1>Rails</h1>
+    <h3>A framework</h3>
+  </section>
+
+  <section id="rails1">
     <h2>Rails</h2>
     <ul>
       <li>A framework for creating web applications</li>
@@ -448,6 +458,10 @@ end
 <!-- ############################## -->
 
 <section>
+
+  <section id="models0">
+    <h1>Rails Models</h1>
+  </section>
 
   <section id="models1">
     <h2>Models: let's start with a DB</h2>
@@ -532,7 +546,7 @@ b = Book.find(4)      # "Kiki vs the sunglasses tyrants"
 
 # Attribute methods
 first_name = a.first_name       # Get an attribute
-b.title    = 'Of mice and Xen'  # Set an attribute
+b.title    = 'Of mice and Zen'  # Set an attribute
 
 # Saving or destroying an object
 n.save     # Writes new row in database
@@ -745,6 +759,10 @@ end
 
 <section>
 
+  <section id="controllers0">
+    <h1>Rails Controllers</h1>
+  </section>
+
   <section id="controllers1">
     <h2>Controllers</h2>
     <pre class="transp"><code class="ruby" data-trim>
@@ -822,6 +840,10 @@ end
 
 <section>
 
+  <section id="views0">
+    <h1>Rails Views</h1>
+  </section>
+
   <section id="views1">
     <h2>Views</h2>
     <pre class="transp"><code class="erb" data-trim>
@@ -862,9 +884,14 @@ Book author: &lt;%= @book.author.first_name %&gt; &lt;%= @book.author.last_name 
 
 <section>
 
+  <section id="cbrain0">
+    <h1>CBRAIN</h1>
+    <h2>A platform</h2>
+  </section>
+
   <section id="cbrain1">
-    <h2>CBRAIN NOW</h2>
-TO DO ... :-(
+    <h2>CBRAIN slide 1 here</h2>
+TO DO ...
   </section>
 
 <!-- ****************************** -->
@@ -921,45 +948,6 @@ TO DO ... :-(
 
   <style>
 
-xxx
-  </section>
-
-</section>
-
-    </div>
-  </div>
-
-<!-- ############################## -->
-<!-- ############################## -->
-<!-- ############################## -->
-
-  <!-- Declares a filter to turn white into CBRAIN blue, #05A3D6 -->
-
-  <svg height="0">
-    <filter id="cbrainblue">
-      <feColorMatrix values="0.0196 0.0    0.0    0 0
-                             0.0    0.6392 0.0    0 0
-                             0.0    0.0    0.8392 0 0
-                             0      0      0      1 0"/>
-    </filter>
-  </svg>
-
-  <!-- Main reveal.js setup -->
-
-  <script src="lib/js/head.min.js"></script>
-  <script src="js/reveal.js"></script>
-  <script src="plugin/highlight/highlight.js"></script>
-  <script>
-    Reveal.initialize(
-    { slideNumber: true, history: true }
-    );
-    hljs.initHighlightingOnLoad();
-  </script>
-
-  <!-- Styles -->
-
-  <style>
-
     /* Headers */
 
     .reveal h1,
@@ -973,19 +961,16 @@ xxx
 
     /* Text styles: em, strong, b, i */
 
-    /* EM is for emphasis in prose */
     .reveal em {
       color: yellow;
       font-style: normal; /* yes please! */
     }
-    /* STRONG is for literal tech keywords in prose */
     .reveal strong {
       color: #0ff;  /* funny, I'm using RGB with only three digits today */
     }
     .reveal b {
       color: #00f;
     }
-    /* I is to highlight single characters or short tokens */
     .reveal i {
       color: #f00;
       font-style: normal; /* yes please! */
@@ -1029,17 +1014,6 @@ xxx
     }
     .reveal .transp {
       background-color: transparent;
-    }
-    .reveal .smallcontent tr td {
-      font-size: 70%;
-    }
-
-    .reveal em.regex {
-      font-size: 150%;
-    }
-
-    .reveal em.smallregex {
-      font-size: 100%;
     }
 
   </style>
