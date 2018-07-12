@@ -45,8 +45,10 @@
 
   <section id="ruby0">
     <h1>Ruby</h1>
-    <h3>A programming language</h3>
+    <h2>A programming language</h2>
   </section>
+
+<!-- ****************************** -->
 
   <section id="ruby1">
     <h2>Ruby</h2>
@@ -434,8 +436,10 @@ end
 
   <section id="rails0">
     <h1>Rails</h1>
-    <h3>A framework</h3>
+    <h2>A web framework</h2>
   </section>
+
+<!-- ****************************** -->
 
   <section id="rails1">
     <h2>Rails</h2>
@@ -460,8 +464,11 @@ end
 <section>
 
   <section id="models0">
-    <h1>Rails Models</h1>
+    <h1>Rails</h1>
+    <h2>Models</h2>
   </section>
+
+<!-- ****************************** -->
 
   <section id="models1">
     <h2>Models: let's start with a DB</h2>
@@ -760,8 +767,11 @@ end
 <section>
 
   <section id="controllers0">
-    <h1>Rails Controllers</h1>
+    <h1>Rails</h1>
+    <h2>Controllers</h2>
   </section>
+
+<!-- ****************************** -->
 
   <section id="controllers1">
     <h2>Controllers</h2>
@@ -841,8 +851,11 @@ end
 <section>
 
   <section id="views0">
-    <h1>Rails Views</h1>
+    <h1>Rails</h1>
+    <h2>Views</h2>
   </section>
+
+<!-- ****************************** -->
 
   <section id="views1">
     <h2>Views</h2>
@@ -857,7 +870,7 @@ Book author: &lt;%= @book.author.first_name %&gt; &lt;%= @book.author.last_name 
     </code></pre>
     <small><em>app/views/books/show.html.erb</em></small>
     <p>
-    <i>Note:</i> normally, view files render partial content inside other common view templates.
+    <small><i>Note:</i> normally, view files render partial content inside other common view templates.</small>
   </section>
 
 <!-- ****************************** -->
@@ -886,31 +899,701 @@ Book author: &lt;%= @book.author.first_name %&gt; &lt;%= @book.author.last_name 
 
   <section id="cbrain0">
     <h1>CBRAIN</h1>
-    <h2>A platform</h2>
+    <h2>A web-based computing platform
+    with support for supercomputing processing
+    and data management abstraction and oh
+    my god I am out of room for all the buzzwords
+    </h2>
   </section>
 
+<!-- ****************************** -->
+
   <section id="cbrain1">
-    <h2>CBRAIN slide 1 here</h2>
-TO DO ...
+    <h2>Initial goals (2008)</h2>
+    <small>Reza Adalat, Marc-&Eacute;tienne Rousseau, Pierre Rioux, Tarek Sherif</small>
+    <ul>
+      <li>Use a <strong>web interface</strong>...</li>
+      <li>... to manage <strong>data</strong>...</li>
+      <li>... and <strong>process them</strong> with <strong>neuroscience tools</strong></li>
+    </ul>
+    <p>
   </section>
 
 <!-- ****************************** -->
 
   <section id="cbrain2">
-    <h2>TODO</h2>
+    <h2>Technologies used</h2>
+    <table>
+      <tr>
+        <td><strong>web interface</strong></td><td>Ruby On Rails</td>
+      </tr>
+      <tr>
+        <td><strong>data</strong></td><td><em>Userfile</em> and <em>DataProvider</em> models</td>
+      </tr>
+      <tr>
+        <td><strong>processing</strong></td><td><em>CbrainTask</em> model</td>
+      </tr>
+      <tr>
+        <td><strong>neuroscience tools</strong></td><td><em>Tool</em> and <em>ToolConfig</em> models</td>
+      </tr>
+    </table>
   </section>
 
 <!-- ****************************** -->
 
   <section id="cbrain3">
-    <h2>TODO</h2>
+    <h2>Two Rails apps!</h2>
+    The overall architecture has two Rails apps:
+    <p>
+    <ul>
+      <li><em>BrainPortal</em>: provides the graphical web interface</li>
+      <li><em>Bourreau</em>: interacts with a supercomputer to process stuff</li>
+      <li>There can be several <em>Bourreaux</em>, but a single <em>BrainPortal</em></li>
+      <li>All connect to the same <strong>Rails database</strong></li>
+    </ul>
+    <p>
+    <img src="images/simple_cb.png">
   </section>
 
 <!-- ****************************** -->
 
   <section id="cbrain4">
-    <h2>TODO</h2>
+    <h2>The Great Anti-Neuro Of 2014</h2>
+    That year, everything that was specific to neuroscience<br>
+    was <strong>removed</strong> from the CBRAIN codebase.
+    <p>
+    All the neuroscience code was partitioned into<br>
+   <strong>distinct, separate</strong> GIT repos.
+    <p>
+    CBRAIN was extended such that when these other GIT repos are<br>
+    extracted within a specific <em>cbrain_plugins</em> subdirectory,<br>
+    they integrate automatically.
+    <p>
+    This became CBRAIN's <strong>plugins</strong> support, and so<br>
+    CBRAIN is now a generic processing platform.
   </section>
+
+<!-- ****************************** -->
+
+  <section id="cbrain5">
+    <h2>Two simple models<h2>
+    <h3><em>User</em></h3>
+    Just the information about a user: name, email etc.
+    <p>
+    <h3><em>Group</em></h3>
+    Basically, a group is a set of users.
+    <p>
+    <ul>
+      <li>Groups are shown in the interface as <strong>Projects</strong></li>
+      <li>Each user initially gets a private group with only them in it</li>
+      <li>Users can create their own groups (projects)</li>
+      <li>Users can invite other users to join their groups (collaboration)</li>
+      <li>Groups are assigned to <strong>all</strong> resources</li>
+      <li>System admins can create projects to limit access to resources</li>
+    </ul>
+  </section>
+
+</section>
+
+<!-- ############################## -->
+<!-- ############################## -->
+<!-- ############################## -->
+
+<section>
+
+  <section id="data0">
+    <h1>CBRAIN</h1>
+    <h2>User data</h3>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="data1">
+    <h2>Managing files</h2>
+    Some design decisions for files:
+    <p>
+    <ul>
+      <li>No paths in database</li>
+      <li>Just a basename (e.g. <em>abc.txt</em>)</li>
+      <li>The Rails top model is named <em>Userfile</em></li>
+      <li>It is an abstract class</li>
+      <li>There are many <strong>types</strong> implemented by subclasses</li>
+      <li>So we use Rails Single Table Inheritance</li>
+    </ul>
+    <p>
+    <center>
+    <div class="cell">
+    <pre data-trim class="compact">
++----+--------------------------------------------------+
+| id | type            | name                           |
++----+--------------------------------------------------+
+| 12 | SingleFile      | nihpd3.tar.gz                  |
+| 34 | TextFile        | abc.txt                        |
+| 55 | FileCollection  | dicom_files                    |
+| 98 | DicomCollection | more_dicoms                    |
++----+--------------------------------------------------+</pre>
+    <br>
+    <small>SQL table (excerpt)</small>
+    </div>
+    </center>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="data2">
+    <h2>Userfile subclasses</h2>
+    <img src="images/userfiles_classes.png">
+    <small>File types can only be reassigned within the same subbranch<br>
+    (<em>SingleFile</em>, <strong>FileCollection</strong>)</small>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="data3">
+    <h2>DataProviders</h2>
+    So where ARE those files?
+    <p>
+    <ul>
+      <li>Each file is associated with a single <em>DataProvider</em></li>
+      <li>The provider's role is to know where the file's content is stored</li>
+      <li>The provider has a generic API for transfering content in/out</li>
+      <li>A provider is NOT a posix file API</li>
+      <li>The provider handles remote connections as needed</li>
+      <li>A CBRAIN system can have many DataProviders</li>
+    </ul>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="data4">
+    <h2>DataProvider types</h2>
+    Provider <em>types</em> differ in:
+    <p>
+    <ul>
+      <li>How they structure their filesystem</li>
+      <li>How they connect to a remote host (if any)</li>
+      <li>What types of files they support</li>
+      <li>Whether or not two users can each have a file with the same name on it</li>
+      <li>Whether or not a file's owner can be re-assigned</li>
+    </ul>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="data4a">
+    <h2>Standard vs Browsable</h2>
+    <em>Standard</em> DataProviders are for storage<br>
+    of files <strong>entirely managed by CBRAIN itself</strong>:
+    <p>
+    <ul>
+      <li>The file structure can be non-obvious</li>
+      <li>The content itself might not be physical files</li>
+      <li>CBRAIN doesn't expect any changes that it didn't do itself</li>
+    </ul>
+    <p>
+    <em>Browsable</em> DataProviders are for more convenient data-exchange:
+    <ul>
+      <li>The files are in normal directories</li>
+      <li>The structure is usually flat</li>
+      <li>External processes can add or remove files</li>
+      <li>When new files are added, they can be <strong>registered</strong> (i.e. a DB entry is added)</li>
+    </ul>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="data5">
+    <img src="images/dp_subclasses.png">
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="data6">
+    <h2>Userfiles and their DPs</h2>
+    <p>
+    <center>
+    <div class="cell">
+    <pre data-trim class="compact">
+# Table: userfiles
++----+--------------------------------------------------+-------------------+
+| id | type            | name                           | data_provider_id  |
++----+--------------------------------------------------+-------------------+
+| 12 | SingleFile      | nihpd3.tar.gz                  | 2                 |
+| 34 | TextFile        | abc.txt                        | 3                 |
+| 55 | FileCollection  | dicom_files                    | 3                 |
+| 98 | DicomCollection | more_dicoms                    | 3                 |
++----+--------------------------------------------------+-------------------+
+</pre>
+    <p>
+    <pre data-trim class="compact">
+# Table: data_providers
++----+--------------------------------------------------+-------------------+
+| id | type                            | name           | config_stuff_cols |
++----+--------------------------------------------------+-------------------+
+| 2  | EnCbrainSmartDataProvider       | MainStore      | paths, hosts,     |
+| 3  | IncomingVaultSmartDataProvider  | SFTP-1         | credentials etc   |
++----+--------------------------------------------------+-------------------+
+</pre>
+    <br>
+    <small>Two SQL tables (excerpt)</small>
+    </div>
+    </center>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="data7">
+    <h2>File manager example</h2>
+    <img src="images/file_manager1.png">
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="data8">
+    <h2>Caching</h2>
+    <ul>
+      <li>Each Rails application has a data cache</li>
+      <li>A programmer always work with the content in that cache</li>
+      <li>New files:
+        <ul>
+          <li>create database entry</li>
+          <li>create data in cache (mkdir, open/write etc)</li>
+          <li><em>sync_to_provider()</em></li>
+        </ul>
+      </li>
+      <li>Existing files:
+        <ul>
+          <li>find database entry</li>
+          <li><em>sync_to_cache()</em></li>
+          <li>use data in cache (or modify it)</li>
+          <li><em>sync_to_provider()</em> (if modified)</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="data9">
+    <h2>So many caches!</h2>
+    <img src="images/full_cb.png" class="resize80">
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="data10">
+    <h2>Coding with DPs</h2>
+    <img src="images/dp_abstract.png">
+    <small><i>Note:</i> for convenience, all <em>DataProvider</em> API methods are provided directly on <em>Userfile</em></small>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="data11">
+    <h2>The <em>SyncStatus</em> framework</h2>
+    All data transfer operations are tracked using the <em>SyncStatus</em> model.
+    <p>
+    At any one time:
+    <ul>
+      <li><strong>Many</strong> Rails app can <strong>download</strong> the same file's content</li>
+      <li><strong>Only one</strong> Rails app can <strong>upload</strong> the file's content</li>
+    </ul>
+    <p>Also:
+    <ul>
+      <li>Timestamps track how long ago synchronization happened</li>
+      <li>Caches have expiry dates</li>
+      <li>API calls allow a programmer to mark cache as new/obsolete etc</li>
+      <li>The <em>SyncStatus</em> API itself is low-level and rarely invoked directly</li>
+      <li>Users can manually clean the caches (e.g. for sensitive data)</li>
+    </ul>
+  </section>
+
+</section>
+
+<!-- ############################## -->
+<!-- ############################## -->
+<!-- ############################## -->
+
+<section>
+
+  <section id="viewers0">
+    <h1>CBRAIN</h1>
+    <h2>Viewing Data In Browser</h2>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="viewers1">
+    <h2>Userfile Viewers</h2>
+    <img src="images/cblist_classes.png" class="resize80">
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="viewers2">
+    <h2>Viewer web content area</h2>
+    <img src="images/userfile_views/userfile_view_blank.png">
+    <small>Top region is database content, bottom region is file type, plugin content</small>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="viewers3">
+    <h2><em>CbrainFileList</em> as TextFile</h2>
+    <img src="images/userfile_views/userfile_view_txt.png">
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="viewers4">
+    <h2><em>CbrainFileList</em> as CsvFile</h2>
+    <img src="images/userfile_views/userfile_view_csv.png">
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="viewers5">
+    <h2><em>CbrainFileList</em> as itself</h2>
+    <img src="images/userfile_views/userfile_view_cblist.png">
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="viewers6">
+    <h2>Userfile Viewer Code</h2>
+
+    <pre class="transp"><code class="ruby" data-trim>
+# CBRAIN Ruby model for MP3 audio files.
+class Mp3AudioFile < AudioFile # AudioFile is a SingleFile
+
+  has_viewer :name => 'MP3 Audio', :partial =&gt; :html5_mp3_audio, :if =&gt; :is_locally_synced?
+
+  def self.pretty_type
+    "MP3 Audio File"
+  end
+end
+    </code></pre>
+    <small><strong>cbrain_plugins/cbrain-plugins-base/userfiles/</strong><em>mp3_audio_file/mp3_audio_file.rb</em></small>
+    <p>
+    <pre class="transp"><code class="erb" data-trim>
+&lt;audio controls="controls" preload="none"&gt;
+  &lt;source src="&lt;%= content_userfile_path(@userfile) %&gt;" type="audio/mp3" /&gt;
+  MP3 audio not supported in this browser.
+&lt;/audio&gt;
+    </code></pre>
+    <small><strong>cbrain_plugins/cbrain-plugins-base/userfiles/</strong><em>mp3_audio_file/views/_mp3_audio_file.html.erb</em></small>
+  </section>
+
+</section>
+
+<!-- ############################## -->
+<!-- ############################## -->
+<!-- ############################## -->
+
+<section>
+
+  <section id="tasks0">
+    <h1>CBRAIN</h1>
+    <h2>Processing files</h2>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="tasks1">
+    <h2>How supercomputers work</h2>
+    <ul>
+      <li>They expect a <strong>script</strong> to be <strong>submitted</strong></li>
+      <li>Each supercomputer has its own submission system</li>
+      <li>Each supercomputer has its own filesystem layout</li>
+      <li>You have to transfer your data in and out</li>
+    </ul>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="tasks2">
+    <h2>CBRAIN's goal for users</h2>
+    <ul>
+      <li>No need to learn how the supercomputer works</li>
+      <li>Just select files in CBRAIN, select a tool, a click <strong>go!</strong></li>
+      <li>This can result in thousands of tasks quickly submitted</li>
+    </ul>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="tasks3">
+    <h2>The <em>CbrainTask</em> model</h2>
+    <pre data-trim class="compact">
+# Table: cbrain_tasks
++----+--------------------------------------------------+---------+------------+
+| id | type                            | bourreau_id    | user_id | params     |
++----+--------------------------------------------------+---------+------------+
+| 38 | Civet                           | 3              | 5       | (yaml)     |
+| 79 | Minc2Niftii                     | 4              | 3       | (yaml)     |
+| 88 | ReconAll                        | 4              | 3       | (yaml)     |
++----+--------------------------------------------------+---------+------------+
+</pre>
+    <small>SQL table (excerpt)</small>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="tasks4">
+    <h2>Task programmer's job</h2>
+    A basic CbrainTask requires a programmer to implement these files:
+    <p>
+    <table>
+      <tr>
+        <th>File path in plugin</th>
+        <th>Role</th>
+       </tr>
+      <tr>
+        <td>.../portal/taskname.rb</td>
+        <td>Portal-side code</td>
+       </tr>
+      <tr>
+        <td>.../views/_task_params.html.erb</td>
+        <td>Input form for task params</td>
+      </tr>
+      <tr>
+        <td>.../views/_show_params.html.erb</td>
+        <td>View code for task info</td>
+      </tr>
+      <tr>
+        <td>.../bourreau/taskname.rb</td>
+        <td>Bourreau-side code</td>
+      </tr>
+    </table>
+    <p>
+    <small><i>Note:</i> these are the core files only, there are many more</small>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="tasks5">
+    <h2>Portal-side code</h2>
+    Its role:
+    <p>
+    <ul>
+      <li>Validate the initial files selected by user</li>
+      <li>Validate the parameters supplied by the form</li>
+      <li>Return one (or several) CbrainTask objects, pre-filled</li>
+      <li>The CbrainTask objects do not even have to all be of the same class as the Ruby Class!</li>
+    </ul>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="tasks5b">
+    <h2>Minimal Portal-side implementation</h2>
+    <pre class="transp"><code class="ruby" data-trim>
+class CbrainTask::Stupid &lt; PortalTask
+
+  def before_form # verify stuff before rendering the form
+    ids = params[:interface_userfile_ids]  # array of ids
+    raise "Need at least one file selected" if ids.size == 0
+    "" # Means all is OK
+  end
+
+  def after_form # verify or do stuff after form submitted
+    "" # I could do something here too
+  end
+
+  def final_task_list # framework expects an array of task objects to be saved
+    [ self ] # This is actually the default behavior in PortalTask
+  end
+
+end
+    </code></pre>
+    <small><i>Note:</i> many features not shown: default params values, pretty param names, etc, etc</small>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="tasks6">
+    <h2>Parameter forms</h2>
+    <img src="images/launch_task_blank.png" class="resize80">
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="tasks7">
+    <h2>Sample params form</h2>
+    <pre class="transp"><code class="erb" data-trim>
+This task has &lt;%= (params[:interface_userfile_ids] || []).size %&gt; files in its input list.
+&lt;p&gt;
+Name for planet: &lt;%= form.params_text_field :name_of_planet %&gt;&lt;br&gt;
+Destroy it?      &lt;%= form.params_check_box  :destroy_planet %&gt;&lt;br&gt;
+    </code></pre>
+    <small><strong>cbrain_plugins/cbrain-plugins-base/cbrain_task/</strong><em>taskname/views/_show_params.html.erb</em></small>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="tasks8">
+    <h2>Params form appearance </h2>
+    <img src="images/launch_task_planet.png" class="resize80">
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="tasks9">
+    <h2>Generated HTML form code</h2>
+    <pre class="transp"><code class="html" data-trim>
+This task has 2 files in its input list.
+&lt;p&gt;
+Name for planet: &lt;input name="cbrain_task[params][name_of_planet]"
+                          id="cbrain_task_BRA_params_KET__BRA_name_of_planet_KET_"
+                       value=""
+                        type="text"
+                 &gt;
+&lt;br&gt;
+Destroy it?      &lt;input name="cbrain_task[params][destroy_planet]"
+                       value="0"
+                        type="hidden"
+                 &gt;
+                 &lt;input name="cbrain_task[params][destroy_planet]"
+                          id="cbrain_task_BRA_params_KET__BRA_destroy_planet_KET_"
+                       value="1"
+                        type="checkbox"
+                 &gt;
+&lt;br&gt;
+    </code></pre>
+    <p>
+    <small><i>Note:</i> manually reformatted for easier inspection</small>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="tasks10">
+    <h2>CbrainTask object content</h2>
+    <pre class="transp"><code class="ruby" data-trim>
+class TasksController &lt; ApplicationController
+
+  # Rails will send all the HTML form inputs all
+  # structured nicely, e.g.
+  #
+  #   params = { :cbrain_tasks =&gt; { :description =&gt; 'a test', # a normal attribute
+  #                                 :params =&gt; { :planet_name =&gt; 'Mars'... },
+  #                                 # other attribute here
+  #                               } }
+  def create # POST /tasks
+    post_params = params[:cbrain_tasks] # Provided by Rails
+    @task = CbrainTask.new(post_params) # Store everything in a new object
+
+    #  @task.description          == 'a test'
+    #  @task.params[:planet_name] == 'Mars' etc
+
+    # Invoke task callback methods here for @task
+    # Create entries in DB with @task, etc
+  end
+end
+    </code></pre>
+    <small><em>app/controllers/tasks_controller.rb</em></small>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="tasks11">
+    <h2>The (almost) full diagram</h2>
+    <a target="_blank" href="images/task_create.png"><img src="images/task_create.png" class="resize40"></a>
+    <p>
+    <small><i>Note:</i> Click image to open it in a new tab</small>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="tasks12">
+    <h2>Bourreau-side code</h2>
+    Its role while setting up:
+    <p>
+    <ul>
+      <li>Synchronize the input files locally</li>
+      <li>Build and return a bash script</li>
+    </ul>
+    <p>
+    Its role after a job has completed:
+    <p>
+    <ul>
+      <li>Verify that the job seems to have completed properly</li>
+      <li>Take the result files, create new Userfiles, and upload to the DP</li>
+    </ul>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="tasks13">
+    <h2>todo</h2>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="tasks25">
+    <h2>todo</h2>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="tasks25">
+    <h2>todo</h2>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="tasks25">
+    <h2>todo</h2>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="tasks25">
+    <h2>todo</h2>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="tasks25">
+    <h2>todo</h2>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="tasks25">
+    <h2>todo</h2>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="tasks25">
+    <h2>todo</h2>
+  </section>
+
+<!-- ****************************** -->
+
+<section id="todo">
+<h2>TODO</h2>
+<pre>
+CbrainTask
+   Types
+   Programming
+      params
+      simple bash script
+   LifeCycle
+    diagram already made
+     Scir
+   Dependencies, same dir, presets
+   Recovery
+   Restart
+   Boutiques
+
+MetaData
+
+Log
+  Provenance
+
+</pre>
+</section>
 
 </section>
 
@@ -1014,6 +1697,14 @@ TO DO ...
     }
     .reveal .transp {
       background-color: transparent;
+    }
+    .reveal .resize80 { /* for pics */
+      width: 80%;
+      height: 80%;
+    }
+    .reveal .resize40 { /* for pics */
+      width: 40%;
+      height: 40%;
     }
 
   </style>
