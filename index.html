@@ -1024,6 +1024,7 @@ Book author: &lt;%= @book.author.first_name %&gt; &lt;%= @book.author.last_name 
     <center>
     <div class="cell">
     <pre data-trim class="compact">
+# Table: userfiles
 +----+--------------------------------------------------+
 | id | type            | name                           |
 +----+--------------------------------------------------+
@@ -1373,8 +1374,7 @@ end
 
   <section id="tasks5">
     <h2>Portal-side code</h2>
-    Its role:
-    <p>
+    <h4>Its role:</h4>
     <ul>
       <li>Validate the initial files selected by user</li>
       <li>Validate the parameters supplied by the form</li>
@@ -1386,7 +1386,7 @@ end
 <!-- ****************************** -->
 
   <section id="tasks5b">
-    <h2>Minimal Portal-side implementation</h2>
+    <h2>Minimal Portal code</h2>
     <pre class="transp"><code class="ruby" data-trim>
 class CbrainTask::Stupid &lt; PortalTask
 
@@ -1406,6 +1406,7 @@ class CbrainTask::Stupid &lt; PortalTask
 
 end
     </code></pre>
+    <small><strong>cbrain_plugins/cbrain-plugins-base/cbrain_task/</strong><em>stupid/portal/stupid.rb</em></small><br>
     <small><i>Note:</i> many features not shown: default params values, pretty param names, etc, etc</small>
   </section>
 
@@ -1426,7 +1427,7 @@ This task has &lt;%= (params[:interface_userfile_ids] || []).size %&gt; files in
 Name for planet: &lt;%= form.params_text_field :name_of_planet %&gt;&lt;br&gt;
 Destroy it?      &lt;%= form.params_check_box  :destroy_planet %&gt;&lt;br&gt;
     </code></pre>
-    <small><strong>cbrain_plugins/cbrain-plugins-base/cbrain_task/</strong><em>taskname/views/_show_params.html.erb</em></small>
+    <small><strong>cbrain_plugins/cbrain-plugins-base/cbrain_task/</strong><em>stupid/views/_show_params.html.erb</em></small>
   </section>
 
 <!-- ****************************** -->
@@ -1506,15 +1507,13 @@ end
 
   <section id="tasks12">
     <h2>Bourreau-side code</h2>
-    Its role while setting up:
-    <p>
+    <h4>Its role while setting up:</h4>
     <ul>
       <li>Synchronize the input files locally</li>
       <li>Build and return a bash script</li>
     </ul>
     <p>
-    Its role after a job has completed:
-    <p>
+    <h4>Its role after a job has completed:</h4>
     <ul>
       <li>Verify that the job seems to have completed properly</li>
       <li>Take the result files, create new Userfiles, and upload to the DP</li>
@@ -1524,37 +1523,120 @@ end
 <!-- ****************************** -->
 
   <section id="tasks13">
-    <h2>todo</h2>
+    <h2>Minimal Bourreau code</h2>
+    <pre class="transp"><code class="ruby" data-trim>
+class CbrainTask::Stupid &lt; ClusterTask
+
+  def setup
+    # Set up all that's needed to run the process
+  end
+
+  def cluster_commands
+    # Return a bash script
+  end
+
+  def save_results
+    # Verify that processing is OK;
+    # if so, save the results as new CBRAIN files
+  end
+
+end
+    </code></pre>
+    <small><strong>cbrain_plugins/cbrain-plugins-base/cbrain_task/</strong><em>stupid/bourreau/stupid.rb</em></small><br>
   </section>
 
 <!-- ****************************** -->
 
-  <section id="tasks25">
-    <h2>todo</h2>
+  <section id="tasks14">
+    <h2>Bourreau: Setup</h2>
+    <pre class="transp"><code class="ruby" data-trim>
+def setup
+  my_params = self.params # a hash with arbitrary content
+
+  # Extract info about our file (we only use the first in this demo code)
+  file_id  = params[:interface_userfile_ids].first # an array of IDs
+  f        = Userfile.find(file_id)
+
+  # We need to make sure our input data is ready locally
+  f.sync_to_cache
+  # I could also use f.cache_full_path here to refer to sync'ed content
+
+  true # all good!
+end
+    </code></pre>
+    <small>Excerpt: <strong>cbrain_plugins/cbrain-plugins-base/cbrain_task/</strong><em>stupid/bourreau/stupid.rb</em></small><br>
   </section>
 
 <!-- ****************************** -->
 
-  <section id="tasks25">
-    <h2>todo</h2>
+  <section id="tasks15">
+    <h2>Bourreau: Commands</h2>
+    <pre class="transp"><code class="ruby" data-trim>
+def cluster_commands
+  my_params = self.params
+
+  # Extract info about what to do
+  pname    = params[:planet_name]
+  killit   = params[:destroy_planet] == '1'
+  file_id  = params[:interface_userfile_ids].first # first of an array of IDs
+  fpath    = Userfile.find(file_id).cache_full_path
+
+  # Build the script or command to run on the supercomputer
+  command   = "planet_destroyer -p #{pname} -f #{fpath}"
+  command  += " -k YES" if killit
+  return command
+end
+    </code></pre>
+    <small>Excerpt: <strong>cbrain_plugins/cbrain-plugins-base/cbrain_task/</strong><em>stupid/bourreau/stupid.rb</em></small><br>
   </section>
 
 <!-- ****************************** -->
 
-  <section id="tasks25">
-    <h2>todo</h2>
+  <section id="tasks16">
+    <h2>Bourreau: Final Checks</h2>
+    <pre class="transp"><code class="ruby" data-trim>
+def save_results
+  # Check that the task worked fine
+  return false unless File.exists? "report.txt"
+
+  new_cb_file = Textfile.new(:name =&gt; "PlanetReport", other_args_here)
+  new_cb_file.save!
+  # Next line: copies to the cache, then autosync to DataProvider
+  new_cb_file.cache_copy_from_localfile("report.txt")
+  true
+end
+    </code></pre>
+    <small>Excerpt: <strong>cbrain_plugins/cbrain-plugins-base/cbrain_task/</strong><em>stupid/bourreau/stupid.rb</em></small><br>
   </section>
 
 <!-- ****************************** -->
 
-  <section id="tasks25">
-    <h2>todo</h2>
+  <section id="tasks17">
+    <h2>Task Status States</h2>
+    <ul>
+      <li>Tasks have states, a string</li>
+      <li>States are assigned and modified by CBRAIN</li>
+      <li>Some changes are made by the portal, some by the Bourreau</li>
+      <li>Some changes are active, other passive (observation on cluster)</li>
+    <ul>
   </section>
 
 <!-- ****************************** -->
 
-  <section id="tasks25">
-    <h2>todo</h2>
+  <section id="tasks18">
+    <h2>Task State Diagram</h2>
+    <img src="images/task_states.png">
+    <p>
+    In red: states where the Ruby code of previous slides is run.
+    <p>
+    <small><i>Note:</i> Full explanations on the <A href="https://github.com/aces/cbrain/wiki/CbrainTask-Programmer-Guide#iii-standard-life-cycle-diagram">CBRAIN GitHub Wiki</A></small>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="tasks19">
+    <h2>Abrupt End Of Part 2</h2>
+    <h4>The rest of the presentation will given in 2 weeks...</h4>
   </section>
 
 <!-- ****************************** -->
@@ -1575,12 +1657,6 @@ end
 <h2>TODO</h2>
 <pre>
 CbrainTask
-   Types
-   Programming
-      params
-      simple bash script
-   LifeCycle
-    diagram already made
      Scir
    Dependencies, same dir, presets
    Recovery
