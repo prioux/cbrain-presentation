@@ -1523,7 +1523,7 @@ end
 <!-- ****************************** -->
 
   <section id="tasks15">
-    <h2>Minimal Bourreau code</h2>
+    <h2>Skeleton Bourreau code</h2>
     <pre class="transp"><code class="ruby" data-trim>
 class CbrainTask::Stupid &lt; ClusterTask
 
@@ -1851,6 +1851,24 @@ end
 <!-- ****************************** -->
 
   <section id="tasks31">
+    <h2>Task States: Restarting</h2>
+    <img src="images/task_states_restart.png">
+    <p>
+    In red: states where the Ruby code in handlers is run.
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="tasks32">
+    <h2>Task States: Recovering</h2>
+    <img src="images/task_states_recover.png">
+    <p>
+    In red: states where the Ruby code in handlers is run.
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="tasks33">
     <h2>Task Archiving, Relocation</h2>
     If a programmer strictly respects the<br>
     CBRAIN task programming guidelines:
@@ -1865,7 +1883,7 @@ end
 
 <!-- ****************************** -->
 
-  <section id="tasks32">
+  <section id="tasks34">
     <h2>ToolConfigs</h2>
     When a task is launched, it is not only associated<br>
     to a supercomputer, but also to a set of<br>
@@ -1887,7 +1905,7 @@ end
 
 <!-- ****************************** -->
 
-  <section id="tasks33">
+  <section id="tasks35">
     <h2>Up to three ToolConfigs</h2>
     A task's configuration can be affected by up<br>
     to <strong>3</strong> (three, trois, drei, tres) <em>ToolConfigs</em>.
@@ -1911,7 +1929,7 @@ end
 
 <!-- ****************************** -->
 
-  <section id="tasks34">
+  <section id="tasks36">
     <h2>Automatic Parallelization</h2>
     <ul>
       <li>When a set of tasks is submitted, the admin can
@@ -1937,7 +1955,7 @@ end
 
 <!-- ****************************** -->
 
-  <section id="tasks35">
+  <section id="tasks37">
     <h2>Boutiques</h2>
     <h4>A framework for deploying tools</h4>
     <div class="cell">
@@ -1962,7 +1980,7 @@ end
 
 <!-- ****************************** -->
 
-  <section id="tasks36">
+  <section id="tasks38">
     <h2>Boutiques Example</h2>
     <pre style="font-size: 40%"><code class="json" data-trim>
 {
@@ -1997,7 +2015,7 @@ end
 
 <!-- ****************************** -->
 
-  <section id="tasks37">
+  <section id="tasks39">
     <h2>Boutiques Limitations</h2>
     Although Boutiques makes integrating a new tools easier, it comes
     with limitations compared to CBRAIN's built-in capabilities:
@@ -2012,8 +2030,6 @@ end
       <li>No support for prerequisites and task dependencies</li>
     </ul>
   </section>
-
-<!-- ****************************** -->
 
 </section>
 
@@ -2062,7 +2078,7 @@ something.revision_info.time          # returns "19:45:33 -0500"
 user = User.where(:login =&gt; 'prioux').first
 user.meta            # returns a handler for metadata of obj
 user.meta[:age] = 76 # setter: sets value associated with :age
-user.meta[:age]      # fetcher: returns value associated with :age
+user.meta[:age]      # getter: returns value associated with :age
 
 task = CbrainTask.first
 task.meta[:xyz] = { :hello =&gt; 2, "goodbye" =&gt; "why?" } # save arbitrary data
@@ -2120,6 +2136,7 @@ task.addlog("Tried to transfer files, failed.")
 <section>
 
   <section id="skipped1">
+    <h1>CBRAIN</h1>
     <h2>Not described</h2>
     Many other CBRAIN features were not covered in this presentation.
     <p>
@@ -2131,6 +2148,8 @@ task.addlog("Tried to transfer files, failed.")
       <li>Rich console commands extensions for admin and devs</li>
       <li>Internal invitation system for collaborations</li>
       <li>Workers and sub-workers for task management</li>
+      <li>Userfiles can be organized in trees (parents and childs)</li>
+      <li>Tasks can be managed as batches</li>
       <li>And the neat Network Operation Center</li>
     </ul>
   </section>
