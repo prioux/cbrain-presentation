@@ -43,14 +43,14 @@
 
 <section>
 
-  <section id="ruby0">
+  <section id="ruby1">
     <h1>Ruby</h1>
     <h2>A programming language</h2>
   </section>
 
 <!-- ****************************** -->
 
-  <section id="ruby1">
+  <section id="ruby2">
     <h2>Ruby</h2>
     <ul>
       <li>Fully object-oriented</li>
@@ -73,7 +73,7 @@
 
 <!-- ****************************** -->
 
-  <section id="ruby2">
+  <section id="ruby3">
     <h2>A few Ruby statements</h2>
     <p>
     <pre class="transp"><code class="ruby" data-trim>
@@ -100,7 +100,7 @@ obj.hello        # prints "I'm an instance method"
 
 <!-- ****************************** -->
 
-  <section id="ruby3">
+  <section id="ruby4">
     <h2>Objects are NOT data containers</h2>
     Unlike in, say, JavaScript, objects do not store key/values.
     <p>
@@ -131,7 +131,7 @@ puts obj2.name     # prints 'Titanic'
 
 <!-- ****************************** -->
 
-  <section id="ruby4">
+  <section id="ruby5">
     <h2>Symbols</h2>
     A special data type unique to Ruby are <em>symbols</em>
     <p>
@@ -154,7 +154,7 @@ obj.other_method :all_ok
 
 <!-- ****************************** -->
 
-  <section id="ruby5">
+  <section id="ruby6">
     <h2>Hash and array literals</h2>
     They pretty much look like those in Perl or Python
     <p>
@@ -181,7 +181,7 @@ obj.dostuff 23, "hello", name: "pierre", age: 76
 
 <!-- ****************************** -->
 
-  <section id="ruby6">
+  <section id="ruby7">
     <h2>Method names with <i>?</i> or <i>!</i></h2>
     These two characters can appear only as<br>
     the <em>last</em> character in a method name.
@@ -212,7 +212,7 @@ x.sub!("lo","p") # returns "help" and change x to "help"
 
 <!-- ****************************** -->
 
-  <section id="ruby7">
+  <section id="ruby8">
     <h2>Assignment methods with <i>=</i></h2>
     For a more elegant syntax, methods can be invoked as assignment.
     <p>
@@ -238,7 +238,7 @@ obj.assignment = "hello"  # the method is "assignment="; spaces are allowed with
 
 <!-- ****************************** -->
 
-  <section id="ruby8">
+  <section id="ruby9">
     <h2>Most operators are methods</h2>
     So they can be overriden for your classes
     <p>
@@ -268,7 +268,7 @@ v1 + a_user     # returns [ "Marylin", "Robert" ] assuming a_user has a name() m
 
 <!-- ****************************** -->
 
-  <section id="ruby9">
+  <section id="ruby10">
     <h2>Code blocks for methods</h2>
     <ul>
       <li><em>All</em> methods can take an <em>optional</em> code block as a final argument</li>
@@ -297,7 +297,7 @@ end  # returns the string "f4" which is 244 in hexadecimal
 
 <!-- ****************************** -->
 
-  <section id="ruby10">
+  <section id="ruby11">
     <h2>Arguments to blocks</h2>
     Blocks can be passed arguments with the <em>|var1,var2...|</em> syntax
     <p>
@@ -320,7 +320,7 @@ do
 
 <!-- ****************************** -->
 
-  <section id="ruby11">
+  <section id="ruby12">
     <h2>Blocks are invoked with <em>yield</em></h2>
     <p>
     <pre class="transp"><code class="ruby" data-trim>
@@ -348,7 +348,7 @@ obj.vowels { |v| puts v }  # block is executed five times
 
 <!-- ****************************** -->
 
-  <section id="ruby12">
+  <section id="ruby13">
     <h2>Methods can save the block for later use</h2>
     <p>
     <pre class="transp"><code class="ruby" data-trim>
@@ -372,7 +372,7 @@ obj.invoke_saved_block "hello"  # returns (without printing it) "olleh"
 
 <!-- ****************************** -->
 
-  <section id="ruby13">
+  <section id="ruby14">
     <h2>Intercepting missing methods</h2>
     <p>
     <pre class="transp"><code class="ruby" data-trim>
@@ -399,7 +399,7 @@ User.find_by_login('mmonroe') # now the method does exist.
 
 <!-- ****************************** -->
 
-  <section id="ruby14">
+  <section id="ruby15">
     <h2>Domain Specific Languages</h2>
     Ruby's syntactic flexibility makes it ideal for elegant <em>DSL</em>s.
     <pre class="transp"><code class="ruby" data-trim>
@@ -434,14 +434,14 @@ end
 
 <section>
 
-  <section id="rails0">
+  <section id="rails1">
     <h1>Rails</h1>
     <h2>A web framework</h2>
   </section>
 
 <!-- ****************************** -->
 
-  <section id="rails1">
+  <section id="rails2">
     <h2>Rails</h2>
     <ul>
       <li>A framework for creating web applications</li>
@@ -463,14 +463,14 @@ end
 
 <section>
 
-  <section id="models0">
+  <section id="models1">
     <h1>Rails</h1>
     <h2>Models</h2>
   </section>
 
 <!-- ****************************** -->
 
-  <section id="models1">
+  <section id="models2">
     <h2>Models: let's start with a DB</h2>
     <pre data-trim>
 mysql&gt; select * from authors;
@@ -499,7 +499,7 @@ mysql&gt; select * from books;
 
 <!-- ****************************** -->
 
-  <section id="models2">
+  <section id="models3">
     <h2>Model conventions</h2>
     <ul>
       <li>Primary key is <em>id</em></li>
@@ -512,7 +512,7 @@ mysql&gt; select * from books;
 
 <!-- ****************************** -->
 
-  <section id="models3">
+  <section id="models4">
     <h2>Ruby classes for the models</h2>
     <center>
     <div class="cell">
@@ -541,7 +541,7 @@ end
 
 <!-- ****************************** -->
 
-  <section id="models4">
+  <section id="models5">
     <h2>Model methods</h2>
     <pre class="transp"><code class="ruby" data-trim>
 # Creating new records
@@ -568,7 +568,7 @@ n.new_record?   # Returns true until saved
 
 <!-- ****************************** -->
 
-  <section id="models5">
+  <section id="models6">
     <h2>Querying</h2>
     <pre class="transp"><code class="ruby" data-trim>
 # Create querying objects with WHERE clauses
@@ -596,7 +596,7 @@ das_count = r1.count
 
 <!-- ****************************** -->
 
-  <section id="models6">
+  <section id="models7">
     <h2>Relations</h2>
     <center>
     <div class="cell">
@@ -623,7 +623,7 @@ end
 
 <!-- ****************************** -->
 
-  <section id="models7">
+  <section id="models8">
     <h2>Relation methods</h2>
     <pre class="transp"><code class="ruby" data-trim>
 a=Author.where(:last_name =&gt; 'Das').first
@@ -646,7 +646,7 @@ b.author
 
 <!-- ****************************** -->
 
-  <section id="models8">
+  <section id="models9">
     <h2>Validations and callbacks</h2>
     <img src="images/rails4_ar_callbacks.png">
     <small><small>
@@ -657,7 +657,7 @@ b.author
 
 <!-- ****************************** -->
 
-  <section id="models9">
+  <section id="models10">
     <h2>Validations and callbacks</h2>
     <center>
     <div class="cell">
@@ -686,7 +686,7 @@ end
 
 <!-- ****************************** -->
 
-  <section id="models10">
+  <section id="models11">
     <h2>Single Table Inheritance</h2>
     <center>
     <div class="cell">
@@ -733,7 +733,7 @@ mysql&gt; select * from books;
 
 <!-- ****************************** -->
 
-  <section id="models11">
+  <section id="models12">
     <h2>Migrations</h2>
     <ul>
       <li>Small Ruby programs encode changes</li>
@@ -766,14 +766,14 @@ end
 
 <section>
 
-  <section id="controllers0">
+  <section id="controllers1">
     <h1>Rails</h1>
     <h2>Controllers</h2>
   </section>
 
 <!-- ****************************** -->
 
-  <section id="controllers1">
+  <section id="controllers2">
     <h2>Controllers</h2>
     <pre class="transp"><code class="ruby" data-trim>
 class BooksController &lt; ApplicationController
@@ -801,7 +801,7 @@ end
 
 <!-- ****************************** -->
 
-  <section id="controllers2">
+  <section id="controllers3">
     <h2>Routing</h2>
     <pre class="transp"><code class="ruby" data-trim>
 Rails.application.routes.draw do
@@ -822,7 +822,7 @@ end
 
 <!-- ****************************** -->
 
-  <section id="controllers3">
+  <section id="controllers4">
     <h2>Instance variables for views</h2>
 Within a controller method (or '<em>action</em>'),<br>
 instance variables will be available in the view code.
@@ -850,14 +850,14 @@ end
 
 <section>
 
-  <section id="views0">
+  <section id="views1">
     <h1>Rails</h1>
     <h2>Views</h2>
   </section>
 
 <!-- ****************************** -->
 
-  <section id="views1">
+  <section id="views2">
     <h2>Views</h2>
     <pre class="transp"><code class="erb" data-trim>
 &lt;html&gt;
@@ -875,7 +875,7 @@ Book author: &lt;%= @book.author.first_name %&gt; &lt;%= @book.author.last_name 
 
 <!-- ****************************** -->
 
-  <section id="views2">
+  <section id="views3">
     <h2>View files for model <em>User</em> in CBRAIN</h2>
     <pre data-trim>
 &gt; ls -l users
@@ -897,7 +897,7 @@ Book author: &lt;%= @book.author.first_name %&gt; &lt;%= @book.author.last_name 
 
 <section>
 
-  <section id="cbrain0">
+  <section id="cbrain1">
     <h1>CBRAIN</h1>
     <h2>A web-based computing platform
     with support for supercomputing processing
@@ -908,7 +908,7 @@ Book author: &lt;%= @book.author.first_name %&gt; &lt;%= @book.author.last_name 
 
 <!-- ****************************** -->
 
-  <section id="cbrain1">
+  <section id="cbrain2">
     <h2>Initial goals (2008)</h2>
     <small>Reza Adalat, Marc-&Eacute;tienne Rousseau, Pierre Rioux, Tarek Sherif</small>
     <ul>
@@ -921,7 +921,7 @@ Book author: &lt;%= @book.author.first_name %&gt; &lt;%= @book.author.last_name 
 
 <!-- ****************************** -->
 
-  <section id="cbrain2">
+  <section id="cbrain3">
     <h2>Technologies used</h2>
     <table>
       <tr>
@@ -941,7 +941,7 @@ Book author: &lt;%= @book.author.first_name %&gt; &lt;%= @book.author.last_name 
 
 <!-- ****************************** -->
 
-  <section id="cbrain3">
+  <section id="cbrain4">
     <h2>Two Rails apps!</h2>
     The overall architecture has two Rails apps:
     <p>
@@ -957,7 +957,7 @@ Book author: &lt;%= @book.author.first_name %&gt; &lt;%= @book.author.last_name 
 
 <!-- ****************************** -->
 
-  <section id="cbrain4">
+  <section id="cbrain5">
     <h2>The Great Anti-Neuro Of 2014</h2>
     That year, everything that was specific to neuroscience<br>
     was <strong>removed</strong> from the CBRAIN codebase.
@@ -975,7 +975,7 @@ Book author: &lt;%= @book.author.first_name %&gt; &lt;%= @book.author.last_name 
 
 <!-- ****************************** -->
 
-  <section id="cbrain5">
+  <section id="cbrain6">
     <h2>Two simple models<h2>
     <h3><em>User</em></h3>
     Just the information about a user: name, email etc.
@@ -1001,14 +1001,14 @@ Book author: &lt;%= @book.author.first_name %&gt; &lt;%= @book.author.last_name 
 
 <section>
 
-  <section id="data0">
+  <section id="data1">
     <h1>CBRAIN</h1>
     <h2>User data</h3>
   </section>
 
 <!-- ****************************** -->
 
-  <section id="data1">
+  <section id="data2">
     <h2>Managing files</h2>
     Some design decisions for files:
     <p>
@@ -1041,7 +1041,7 @@ Book author: &lt;%= @book.author.first_name %&gt; &lt;%= @book.author.last_name 
 
 <!-- ****************************** -->
 
-  <section id="data2">
+  <section id="data3">
     <h2>Userfile subclasses</h2>
     <img src="images/userfiles_classes.png">
     <small>File types can only be reassigned within the same subbranch<br>
@@ -1050,7 +1050,7 @@ Book author: &lt;%= @book.author.first_name %&gt; &lt;%= @book.author.last_name 
 
 <!-- ****************************** -->
 
-  <section id="data3">
+  <section id="data4">
     <h2>DataProviders</h2>
     So where ARE those files?
     <p>
@@ -1066,7 +1066,7 @@ Book author: &lt;%= @book.author.first_name %&gt; &lt;%= @book.author.last_name 
 
 <!-- ****************************** -->
 
-  <section id="data4">
+  <section id="data5">
     <h2>DataProvider types</h2>
     Provider <em>types</em> differ in:
     <p>
@@ -1081,7 +1081,7 @@ Book author: &lt;%= @book.author.first_name %&gt; &lt;%= @book.author.last_name 
 
 <!-- ****************************** -->
 
-  <section id="data4a">
+  <section id="data6">
     <h2>Standard vs Browsable</h2>
     <em>Standard</em> DataProviders are for storage<br>
     of files <strong>entirely managed by CBRAIN itself</strong>:
@@ -1103,13 +1103,13 @@ Book author: &lt;%= @book.author.first_name %&gt; &lt;%= @book.author.last_name 
 
 <!-- ****************************** -->
 
-  <section id="data5">
+  <section id="data7">
     <img src="images/dp_subclasses.png">
   </section>
 
 <!-- ****************************** -->
 
-  <section id="data6">
+  <section id="data8">
     <h2>Userfiles and their DPs</h2>
     <p>
     <center>
@@ -1143,14 +1143,14 @@ Book author: &lt;%= @book.author.first_name %&gt; &lt;%= @book.author.last_name 
 
 <!-- ****************************** -->
 
-  <section id="data7">
+  <section id="data9">
     <h2>File manager example</h2>
     <img src="images/file_manager1.png">
   </section>
 
 <!-- ****************************** -->
 
-  <section id="data8">
+  <section id="data10">
     <h2>Caching</h2>
     <ul>
       <li>Each Rails application has a data cache</li>
@@ -1175,14 +1175,14 @@ Book author: &lt;%= @book.author.first_name %&gt; &lt;%= @book.author.last_name 
 
 <!-- ****************************** -->
 
-  <section id="data9">
+  <section id="data11">
     <h2>So many caches!</h2>
     <img src="images/full_cb.png" class="resize80">
   </section>
 
 <!-- ****************************** -->
 
-  <section id="data10">
+  <section id="data12">
     <h2>Coding with DPs</h2>
     <img src="images/dp_abstract.png">
     <small><i>Note:</i> for convenience, all <em>DataProvider</em> API methods are provided directly on <em>Userfile</em></small>
@@ -1190,7 +1190,7 @@ Book author: &lt;%= @book.author.first_name %&gt; &lt;%= @book.author.last_name 
 
 <!-- ****************************** -->
 
-  <section id="data11">
+  <section id="data13">
     <h2>The <em>SyncStatus</em> framework</h2>
     All data transfer operations are tracked using the <em>SyncStatus</em> model.
     <p>
@@ -1217,21 +1217,21 @@ Book author: &lt;%= @book.author.first_name %&gt; &lt;%= @book.author.last_name 
 
 <section>
 
-  <section id="viewers0">
+  <section id="viewers1">
     <h1>CBRAIN</h1>
     <h2>Viewing Data In Browser</h2>
   </section>
 
 <!-- ****************************** -->
 
-  <section id="viewers1">
+  <section id="viewers2">
     <h2>Userfile Viewers</h2>
     <img src="images/cblist_classes.png" class="resize80">
   </section>
 
 <!-- ****************************** -->
 
-  <section id="viewers2">
+  <section id="viewers3">
     <h2>Viewer web content area</h2>
     <img src="images/userfile_views/userfile_view_blank.png">
     <small>Top region is database content, bottom region is file type, plugin content</small>
@@ -1239,28 +1239,28 @@ Book author: &lt;%= @book.author.first_name %&gt; &lt;%= @book.author.last_name 
 
 <!-- ****************************** -->
 
-  <section id="viewers3">
+  <section id="viewers4">
     <h2><em>CbrainFileList</em> as TextFile</h2>
     <img src="images/userfile_views/userfile_view_txt.png">
   </section>
 
 <!-- ****************************** -->
 
-  <section id="viewers4">
+  <section id="viewers5">
     <h2><em>CbrainFileList</em> as CsvFile</h2>
     <img src="images/userfile_views/userfile_view_csv.png">
   </section>
 
 <!-- ****************************** -->
 
-  <section id="viewers5">
+  <section id="viewers6">
     <h2><em>CbrainFileList</em> as itself</h2>
     <img src="images/userfile_views/userfile_view_cblist.png">
   </section>
 
 <!-- ****************************** -->
 
-  <section id="viewers6">
+  <section id="viewers7">
     <h2>Userfile Viewer Code</h2>
 
     <pre class="transp"><code class="ruby" data-trim>
@@ -1293,14 +1293,14 @@ end
 
 <section>
 
-  <section id="tasks0">
+  <section id="tasks1">
     <h1>CBRAIN</h1>
     <h2>Processing files</h2>
   </section>
 
 <!-- ****************************** -->
 
-  <section id="tasks1">
+  <section id="tasks2">
     <h2>How supercomputers work</h2>
     <ul>
       <li>They expect a <strong>script</strong> to be <strong>submitted</strong></li>
@@ -1312,7 +1312,7 @@ end
 
 <!-- ****************************** -->
 
-  <section id="tasks2">
+  <section id="tasks3">
     <h2>CBRAIN's goal for users</h2>
     <ul>
       <li>No need to learn how the supercomputer works</li>
@@ -1323,7 +1323,7 @@ end
 
 <!-- ****************************** -->
 
-  <section id="tasks3">
+  <section id="tasks4">
     <h2>The <em>CbrainTask</em> model</h2>
     <pre data-trim class="compact">
 # Table: cbrain_tasks
@@ -1340,7 +1340,7 @@ end
 
 <!-- ****************************** -->
 
-  <section id="tasks4">
+  <section id="tasks5">
     <h2>Task programmer's job</h2>
     A basic CbrainTask requires a programmer to implement these files:
     <p>
@@ -1372,7 +1372,7 @@ end
 
 <!-- ****************************** -->
 
-  <section id="tasks5">
+  <section id="tasks6">
     <h2>Portal-side code</h2>
     <h4>Its role:</h4>
     <ul>
@@ -1385,7 +1385,7 @@ end
 
 <!-- ****************************** -->
 
-  <section id="tasks5b">
+  <section id="tasks7">
     <h2>Minimal Portal code</h2>
     <pre class="transp"><code class="ruby" data-trim>
 class CbrainTask::Stupid &lt; PortalTask
@@ -1412,14 +1412,14 @@ end
 
 <!-- ****************************** -->
 
-  <section id="tasks6">
+  <section id="tasks8">
     <h2>Parameter forms</h2>
     <img src="images/launch_task_blank.png" class="resize80">
   </section>
 
 <!-- ****************************** -->
 
-  <section id="tasks7">
+  <section id="tasks9">
     <h2>Sample params form</h2>
     <pre class="transp"><code class="erb" data-trim>
 This task has &lt;%= (params[:interface_userfile_ids] || []).size %&gt; files in its input list.
@@ -1432,14 +1432,14 @@ Destroy it?      &lt;%= form.params_check_box  :destroy_planet %&gt;&lt;br&gt;
 
 <!-- ****************************** -->
 
-  <section id="tasks8">
+  <section id="tasks10">
     <h2>Params form appearance </h2>
     <img src="images/launch_task_planet.png" class="resize80">
   </section>
 
 <!-- ****************************** -->
 
-  <section id="tasks9">
+  <section id="tasks11">
     <h2>Generated HTML form code</h2>
     <pre class="transp"><code class="html" data-trim>
 This task has 2 files in its input list.
@@ -1467,7 +1467,7 @@ Destroy it?      &lt;input name="cbrain_task[params][destroy_planet]"
 
 <!-- ****************************** -->
 
-  <section id="tasks10">
+  <section id="tasks12">
     <h2>CbrainTask object content</h2>
     <pre class="transp"><code class="ruby" data-trim>
 class TasksController &lt; ApplicationController
@@ -1496,7 +1496,7 @@ end
 
 <!-- ****************************** -->
 
-  <section id="tasks11">
+  <section id="tasks13">
     <h2>The (almost) full diagram</h2>
     <a target="_blank" href="images/task_create.png"><img src="images/task_create.png" class="resize40"></a>
     <p>
@@ -1505,7 +1505,7 @@ end
 
 <!-- ****************************** -->
 
-  <section id="tasks12">
+  <section id="tasks14">
     <h2>Bourreau-side code</h2>
     <h4>Its role while setting up:</h4>
     <ul>
@@ -1522,7 +1522,7 @@ end
 
 <!-- ****************************** -->
 
-  <section id="tasks13">
+  <section id="tasks15">
     <h2>Minimal Bourreau code</h2>
     <pre class="transp"><code class="ruby" data-trim>
 class CbrainTask::Stupid &lt; ClusterTask
@@ -1547,14 +1547,31 @@ end
 
 <!-- ****************************** -->
 
-  <section id="tasks14">
+  <section id="tasks16">
+    <h2>Execution context?</h2>
+    The bourreau-side code can rely on many things<br>
+    set up by the CBRAIN framework:
+    <p>
+    <ul>
+      <li>A work directory for the task (cwd)</li>
+      <li>Prerequisites are fulfilled (more on that later)</li>
+      <li><em>$PATH</em> and bash <strong>modules</strong> etc... are all set up</li>
+      <li>The local <strong>DataProvider cache</strong> is available for file input/output</li>
+    </ul>
+    <p>
+    The task programmer does not have to set any of these things up.
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="tasks17">
     <h2>Bourreau: Setup</h2>
     <pre class="transp"><code class="ruby" data-trim>
 def setup
-  my_params = self.params # a hash with arbitrary content
+  my_params = self.params # a hash with arbitrary content, usually the scientific parameters
 
   # Extract info about our file (we only use the first in this demo code)
-  file_id  = params[:interface_userfile_ids].first # an array of IDs
+  file_id  = params[:interface_userfile_ids].first # first of an array of IDs
   f        = Userfile.find(file_id)
 
   # We need to make sure our input data is ready locally
@@ -1569,7 +1586,7 @@ end
 
 <!-- ****************************** -->
 
-  <section id="tasks15">
+  <section id="tasks18">
     <h2>Bourreau: Commands</h2>
     <pre class="transp"><code class="ruby" data-trim>
 def cluster_commands
@@ -1582,26 +1599,35 @@ def cluster_commands
   fpath    = Userfile.find(file_id).cache_full_path
 
   # Build the script or command to run on the supercomputer
-  command   = "planet_destroyer -p #{pname} -f #{fpath}"
+  command   = "planet_manager -p #{pname} -f #{fpath}" # not shown: helpers to avoid injection
   command  += " -k YES" if killit
   return command
 end
     </code></pre>
     <small>Excerpt: <strong>cbrain_plugins/cbrain-plugins-base/cbrain_task/</strong><em>stupid/bourreau/stupid.rb</em></small><br>
+    <p>
+    This builds the simple bash script
+<pre data-trim>
+planet_manager -p pluto -f /path/to/userfile/cache
+</pre>
+or, if the checkbox <em>destroy_planet</em> was set,
+<pre data-trim>
+planet_manager -p pluto -f /path/to/userfile/cache -k YES
+</pre>
   </section>
 
 <!-- ****************************** -->
 
-  <section id="tasks16">
+  <section id="tasks19">
     <h2>Bourreau: Final Checks</h2>
     <pre class="transp"><code class="ruby" data-trim>
 def save_results
   # Check that the task worked fine
   return false unless File.exists? "report.txt"
 
-  new_cb_file = Textfile.new(:name =&gt; "PlanetReport", other_args_here)
+  new_cb_file = Textfile.new(:name =&gt; "PlanetReport", more_other_args_here)
   new_cb_file.save!
-  # Next line: copies to the cache, then autosync to DataProvider
+  # Next line: copies the content to the cache, then autosync to DataProvider
   new_cb_file.cache_copy_from_localfile("report.txt")
   true
 end
@@ -1611,19 +1637,19 @@ end
 
 <!-- ****************************** -->
 
-  <section id="tasks17">
+  <section id="tasks20">
     <h2>Task Status States</h2>
     <ul>
       <li>Tasks have states, a string</li>
       <li>States are assigned and modified by CBRAIN</li>
       <li>Some changes are made by the portal, some by the Bourreau</li>
-      <li>Some changes are active, other passive (observation on cluster)</li>
+      <li>Some changes are active, other passive (observation on supercomputer)</li>
     <ul>
   </section>
 
 <!-- ****************************** -->
 
-  <section id="tasks18">
+  <section id="tasks21">
     <h2>Task State Diagram</h2>
     <img src="images/task_states.png">
     <p>
@@ -1634,42 +1660,507 @@ end
 
 <!-- ****************************** -->
 
-  <section id="tasks19">
-    <h2>Abrupt End Of Part 2</h2>
-    <h4>The rest of the presentation will given in 2 weeks...</h4>
+  <section id="tasks22">
+    <h2>Scir</h2>
+    "<em>S</em>imple <em>C</em>luster <em>I</em>nterface in <em>R</em>uby"
+    <p>
+    <ul>
+      <li>It's a set of Ruby classes and subclasses</li>
+      <li>Written from scratch when <em>DRMAA</em> failed miserably</li>
+      <li>It knows how to interact with different supercomputers:<p>
+        <ol>
+          <li>Submit bash scripts</li>
+          <li>Query supercomputer status</li>
+          <li>Query job status</li>
+          <li>Cancel, hold, suspend jobs etc</li>
+        </ol>
+        <p>
+      </li>
+      <li>Supports: PBS/Torque, MOAB, SLURM, SGE, SharcNet, Amazon EC2, LSF, Cobalt, and plain Unix jobs</li>
+    </ul>
+  </section>
+
+<!-- ****************************** -->
+  <section id="tasks23">
+    <img src="images/scir.png">
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="tasks24">
+    <h2>Task Dependencies</h2>
+    Tasks are generally independent of each other.
+    <p>
+    But there is an API to control their progression<br>
+    based on the states of other tasks.
+    <p>
+    There are two <strong>stop points</strong> in the state diagram:
+    <p>
+    <ul>
+      <li>At the state <i>Setting Up</i></li>
+      <li>At the state <i>Post Processing</i></li>
+    </ul>
+    <p>
+    A task can be prevented from entering these states until
+    an arbitrary number of other tasks are in an arbitrary set of other states.
+    <p>
+    A task can even depend on another task being in a <i>Failed</i> state!
   </section>
 
 <!-- ****************************** -->
 
   <section id="tasks25">
-    <h2>todo</h2>
+    <h2>Task Dependencies API</h2>
+    <img src="images/task_deps.png" class="resize80"><br>
+    <pre class="transp"><code class="ruby" data-trim>
+# Example of setting up the dependencies above
+task2a    .add_prerequisites_for_setup(           task1,     "Queued"    )
+task2b    .add_prerequisites_for_setup(           task1,     "Queued"    )
+finaltask .add_prerequisites_for_post_processing( task2a,    "Completed" )
+finaltask .add_prerequisites_for_post_processing( task2b,    "Completed" )
+errortask .add_prerequisites_for_setup(           finaltask, "Failed"    )
+    </code></pre>
   </section>
 
 <!-- ****************************** -->
 
-  <section id="tasks25">
-    <h2>todo</h2>
+  <section id="tasks26">
+    <h2>Sharing Work Directories</h2>
+    By default each task gets its own <em>work directory</em>.
+    <p>
+    However, any group task or group of tasks can be configured
+    with an option to share the work directory of another task.
+    <p>
+    This, of course, can only work if all the tasks<br>
+    are launched on the same supercomputer.
+    <pre class="transp"><code class="ruby" data-trim>
+# Example of making sure task1, task2a and task2b all
+# share the same work directory.
+task2a.share_workdir_with( task1 )
+task2b.share_workdir_with( task1 )
+    </code></pre>
   </section>
 
 <!-- ****************************** -->
 
-<section id="todo">
-<h2>TODO</h2>
-<pre>
-CbrainTask
-     Scir
-   Dependencies, same dir, presets
-   Recovery
-   Restart
-   Boutiques
+  <section id="tasks27">
+    <h2>Task Restartability</h2>
+    Tasks that have succesfully <em>Completed</em> can be restarted.
+    <p>
+    <ul>
+      <li>The attribute <em>run_number</em> is increased (it starts at 1)</li>
+      <li>The restart can be triggered at <strong>three</strong> states in the task's lifecycle:
+        <p>
+        <ol>
+          <li>At the <strong>setup</strong> stage</li>
+          <li>At <strong>submission to the supercomputer</strong></li>
+          <li>At the <strong>post processing</strong> stage</li>
+        </ol>
+        <p>
+      </li>
+    </ul>
+  </section>
 
-MetaData
+<!-- ****************************** -->
 
-Log
-  Provenance
+  <section id="tasks28">
+    <h2>Task Error Recovery</h2>
+    Supercomputers, network connections, file servers and<br>
+    random number generators are all <strong>unreliable</strong>!
+    <p>
+    So tasks can fail at different stages for different reasons:
+    <p>
+    <ul>
+      <li>System reasons (network, files, etc)</li>
+      <li>Pipeline dependencies (other tasks states)</li>
+      <li>Task-specific (bad parameters, bad input files etc)</li>
+    </ul>
+    <p>
+    The CBRAIN interface allow users to <strong>retry</strong> tasks that have failed.
+  </section>
 
-</pre>
+<!-- ****************************** -->
+
+  <section id="tasks29">
+    <h2>About Restart and Recover</h2>
+    For these two features, a task programmer<br>
+    should <strong>provide some handler methods</strong>
+    <p>
+    <pre class="transp"><code class="ruby" data-trim>
+class CbrainTask::Something &lt; ClusterTask
+  # Restartability Methods
+  def restart_at_setup
+  def restart_at_cluster
+  def restart_at_post_processing
+  # Error Recoverability Methods
+  def recover_from_setup_failure
+  def recover_from_cluster_failure
+  def recover_from_post_processing_failure
+end
+    </code></pre>
+    <p>
+    However, by following <strong>CBRAIN programming guidelines</strong>, a programmer
+    can also avoid having to write these methods by making the other standard API methods
+    <strong>restartable and recoverable naturally</strong>.
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="tasks30">
+    <h2>Example: restarting at setup</h2>
+    <div class="cell">
+<h4>Standard Way</h4>
+    <pre class="transp"><code class="ruby" data-trim>
+class CbrainTask::Something &lt; ClusterTask
+
+  def setup
+    # symlink() raise an exception
+    # if target exists!
+    File.symlink cache_data, "my_input"
+  end
+
+  def restart_at_setup
+    File.rm "my_input"
+  end
+
+end
+    </code></pre>
+    </div>
+
+    <div class="cell">
+    &nbsp; &nbsp; &nbsp;
+    </div>
+
+    <div class="cell">
+<h4>Easy Way</h4>
+    <pre class="transp"><code class="ruby" data-trim>
+class CbrainTask::Something &lt; ClusterTask
+
+  include RestartableTask # adds trivial restart_at_setup()
+
+  def setup
+    # safe_symlink() is a CBRAIN helper method
+    safe_symlink cache_data, "my_input"
+  end
+
+end
+    </code></pre>
+    </div>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="tasks31">
+    <h2>Task Archiving, Relocation</h2>
+    If a programmer strictly respects the<br>
+    CBRAIN task programming guidelines:
+    <p>
+    <ul>
+      <li>All files in the workdir will use relocatable symlinks</li>
+      <li>No hardcoded full paths are present in the scripts</li>
+    </ul>
+    <p>
+    In that case, a task's work directory can be <strong>archived</strong> (turned into a <em>.tar.gz</em>), moved about, and even restarted on <strong>another supercomputer</strong>!
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="tasks32">
+    <h2>ToolConfigs</h2>
+    When a task is launched, it is not only associated<br>
+    to a supercomputer, but also to a set of<br>
+    <em>ToolConfig objects</em> in the database.
+    <p>
+    <em>ToolConfigs</em> are created by the administrator<br>
+    using the interface. They provide configuration information<br>
+    for a <strong>version</strong> of a scientific tool on a specific supercomputer.
+    <p>
+    <ul>
+      <li>Environment variables (PATHs, etc)</li>
+      <li>Supercomputer parameters (nodes, cores, queue names)</li>
+      <li>Arbitrary bash prologues (<em>source init.sh</em>, etc)</li>
+    </ul>
+    <p>
+    This also means that the CBRAIN system itself, when deployed, is free of
+    all the requirements of the tools it supports.
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="tasks33">
+    <h2>Up to three ToolConfigs</h2>
+    A task's configuration can be affected by up<br>
+    to <strong>3</strong> (three, trois, drei, tres) <em>ToolConfigs</em>.
+    <p>
+    <ul>
+      <li>A ToolConfig for <strong>any</strong> tasks types on the <strong>current</strong> supercomputer</li>
+      <li>A ToolConfig the <strong>current</strong> task type on <strong>any</strong> supercomputers</li>
+      <li>A ToolConfig the <strong>current</strong> task type on the <strong>current</strong> supercomputers</li>
+    </ul>
+    <p>
+    The first two are optional, the last one is mandatory.<br>
+    They are applied in this order.
+    <p>
+    The user usually selects the third one, and the first two<br>
+    are applied automatically as necessary.
+    <p>
+    This gives the opportunity for the system administrator<br>
+    to provide default configurations for task types, for supercomputers,<br>
+    or more specifically for a task on a supercomputer.
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="tasks34">
+    <h2>Automatic Parallelization</h2>
+    <ul>
+      <li>When a set of tasks is submitted, the admin can
+          configure a ToolConfig attribute for parallelizing them.
+      </li>
+      <li>CBRAIN will launch the tasks normally, but after
+          they are set up they will not be submitted.
+      </li>
+      <li>Instead, CBRAIN will create, configure and launch
+          one (or several) <em>Parallelizer</em> tasks.
+      </li>
+      <li>Each Parallelizer will execute the scientific tasks of
+          2, 3, 5, 10 etc of the original tasks.
+      </li>
+      <li>A Parallelizer is generic and doesn't need to know anything
+          about the tasks it parallelize.
+      </li>
+      <li>Once a Parallelizer is finished, the original tasks just
+          proceed to their post processing normally.
+      </li>
+    </ul>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="tasks35">
+    <h2>Boutiques</h2>
+    <h4>A framework for deploying tools</h4>
+    <div class="cell">
+    <img src="https://boutiques.github.io/images/logo.png" class="resize10" style="float: left">
+    This was started in 2015 by Tristan Glatard (now a PI at Concordia)
+    while he worked with us here at CBRAIN. The CBRAIN implementation was performed by
+    R&eacute;mi Bernard.
+    </div>
+    <p>
+    <ul>
+      <li>All properties of a tool are described in a single JSON file</li>
+      <li>CBRAIN reads that and builds everything:<br>
+        <ol>
+          <li>User interface (parameter form, help docs)</li>
+          <li>Parameter validation code</li>
+          <li>Bourreau-side code</li>
+        </ol>
+      <li>Boutiques comes with an interactive command-line tool to build such JSON descriptors</li>
+      <li>Site: <a href="https://boutiques.github.io/">https://boutiques.github.io/</a></li>
+    </ul>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="tasks36">
+    <h2>Boutiques Example</h2>
+    <pre style="font-size: 40%"><code class="json" data-trim>
+{
+    "tool-version": "5.0.0",
+    "name": "fsl_anat",
+    "command-line": "fsl_anat [INPUT_FILE] [INPUT_DIR] [OUTPUT_DIR] [CLOBBER_FLAG] [WEAKBIAS_FLAG]
+                     [NO_REORIENT_FLAG] [NO_CROP_FLAG] [NO_BIAS_FLAG] [NO_REGISTRATION_FLAG] [NO_NONLINEAR_REG_FLAG]
+                     [NO_SEG_FLAG] [NO_SUBCORTSEG_FLAG] [NO_SEARCH_FLAG] [NO_CLEANUP_FLAG] [BIAS_FIELD_SMOOTHING_VAL]
+                     [IMAGE_TYPE] [BET_F_PARAM]",
+    "inputs": [
+        {
+            "command-line-flag": "-i",
+            "description": "Input image file (for single-image use), such as .nii.gz. Either this or an input
+                            dir (-d) must be specified, but not both.",
+            "value-key": "[INPUT_FILE]",
+            "type": "File",
+            "list": false,
+            "optional": true,
+            "id": "infile",
+            "name": "Input file"
+        },
+        {
+            "command-line-flag": "-d",
+            "description": "Existing input directory (.anat extension) where this script will be run in place.
+                            Either this or an input file (-i) must be specified, but not both.",
+            "value-key": "[INPUT_DIR]",
+            "type": "File",
+            "list": false,
+(rest not shown...)
+    </code></pre>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="tasks37">
+    <h2>Boutiques Limitations</h2>
+    Although Boutiques makes integrating a new tools easier, it comes
+    with limitations compared to CBRAIN's built-in capabilities:
+    <p>
+    <ul>
+      <li>No support for mixed-types task sets</li>
+      <li>No support for shared work directories</li>
+      <li>Minimal support for restartability</li>
+      <li>Minimal support for recoverability</li>
+      <li>No support for CBRAIN 'refresh' in task forms</li>
+      <li>No support for CBRAIN output file name generators</li>
+      <li>No support for prerequisites and task dependencies</li>
+    </ul>
+  </section>
+
+<!-- ****************************** -->
+
 </section>
+
+<!-- ############################## -->
+<!-- ############################## -->
+<!-- ############################## -->
+
+<section>
+
+  <section id="other1">
+    <h1>CBRAIN</h1>
+    <h2>Other CBRAIN Features</h2>
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="other2">
+    <h2>Provenance</h2>
+    All CBRAIN Ruby classes are aware of their own GIT revision number!
+    <pre><code class="ruby" data-trim>
+class SomeSuperSomething
+
+  Revision_info = CbrainFileRevision[ __FILE__ ] # btw coloring error
+
+end
+
+# Create a new object
+something = SomeSuperSomething.new
+
+# Query the information from GIT
+something.revision_info.basename      # returns "some_super_something.rb"
+something.revision_info.author        # returns "Pierre Rioux"
+something.revision_info.short_commit  # returns "8f112ca9"
+something.revision_info.date          # returns "2018-08-01"
+something.revision_info.time          # returns "19:45:33 -0500"
+    </code></pre>
+
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="other3">
+    <h2>MetaData</h2>
+    We can add meta data to ANY ActiveRecord object in the DB.
+    <pre><code class="ruby" data-trim>
+user = User.where(:login =&gt; 'prioux').first
+user.meta            # returns a handler for metadata of obj
+user.meta[:age] = 76 # setter: sets value associated with :age
+user.meta[:age]      # fetcher: returns value associated with :age
+
+task = CbrainTask.first
+task.meta[:xyz] = { :hello =&gt; 2, "goodbye" =&gt; "why?" } # save arbitrary data
+    </code></pre>
+
+    This is implemented in a <strong>single table</strong> that does <i>NOT</i> use
+    any proper relational database joining, but is transparent
+    using the Ruby API:
+
+    <pre data-trim>
+mysql&gt; select * from meta_data_store;
++----+-------+---------------+-------------------------------------------+
+| id | ar_id | ar_table_name | key   | value                             |
++----+-------+---------------+-------------------------------------------+
+| 47 |     3 | users         | "age" | "--- 76\n...\n"                   |
+| 92 |  2344 | cbrain_tasks  | "xyz" | "---\n:hello: 2\ngoodbye: why?\n" |
++----+-------------------------------------------------------------------+
+</pre>
+
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="other4">
+    <h2>Logging</h2>
+     We can log information to ANY ActiveRecord object in the DB.
+    <pre><code class="ruby" data-trim>
+user = User.where(:login =&gt; 'prioux').first
+user.addlog("User complained about filesystem")
+
+task = CbrainTask.first
+task.addlog("Tried to transfer files, failed.")
+    </code></pre>
+
+    Exactly as for the meta data store, the logs are all saved in a
+    single table the contains the table names along with the record ID.
+    <p>
+    Each log entry is timestamped and formatted.<br>
+    E.g for the user above:
+    <pre data-trim>
+[2018-02-19 16:01:07 EST] NormalUser revision 4e779042 Pierre Rioux 2015-09-28
+[2018-02-19 16:01:07 EST] create() UsersController rev. 46f29825 Account created by 'admin'
+[2018-08-01 19:28:38 EDT] User complained about filesystem
+</pre>
+   The logging API has a rich set of methods for automatically
+   recording the revision info of classes and code.
+  </section>
+
+</section>
+
+<!-- ############################## -->
+<!-- ############################## -->
+<!-- ############################## -->
+
+<section>
+
+  <section id="skipped1">
+    <h2>Not described</h2>
+    Many other CBRAIN features were not covered in this presentation.
+    <p>
+    <ul>
+      <li>CbrainFormBuilder: helps programmers make forms for tasks</li>
+      <li>Task subtasking system (Glatard, Quirion)</li>
+      <li>Secure communication tunnels (SSH agents with locks etc)</li>
+      <li>Per-resource user licenses</li>
+      <li>Rich console commands extensions for admin and devs</li>
+      <li>Internal invitation system for collaborations</li>
+      <li>Workers and sub-workers for task management</li>
+      <li>And the neat Network Operation Center</li>
+    </ul>
+  </section>
+
+</section>
+
+<!-- ############################## -->
+<!-- ############################## -->
+<!-- ############################## -->
+
+<section>
+
+  <section id="end1">
+    <h1>The End</h1>
+    <h2 class="glow">Thank you</h2>
+
+    <strong>The CBRAIN features described here were created by:</strong>
+    <br>
+    Tarek Sherif<br>
+    Natacha Beck<br>
+    R&eacute;mi Bernard<br>
+    Tristan Aumentado-Armstrong<br>
+    Tristan Glatard<br>
+    Pierre Rioux
+    <p>
+    <strong>Project management:</strong>
+    <br>
+    Marc-&Eacute;tienne Rousseau<br>
+    Shawn Brown
+  </section>
 
 </section>
 
@@ -1709,6 +2200,14 @@ Log
 
     /* Headers */
 
+    @keyframes glowing {
+        0% { text-shadow: 0.0em 0.0em 0.0em #0cc; }
+       25% { text-shadow: 0.0em 0.0em 0.2em #0d8; }
+       50% { text-shadow: 0.0em 0.0em 0.4em #0ff; }
+       75% { text-shadow: 0.0em 0.0em 0.2em #0d8; }
+      100% { text-shadow: 0.0em 0.0em 0.0em #0cc; }
+    }
+
     .reveal h1,
     .reveal h2,
     .reveal h3,
@@ -1719,6 +2218,10 @@ Log
     }
 
     /* Text styles: em, strong, b, i */
+
+    .reveal .glow {
+      animation: glowing 3555ms infinite;
+    }
 
     .reveal em {
       color: yellow;
@@ -1747,7 +2250,8 @@ Log
     }
     .reveal pre {
       background: #033;
-      padding: 0.2em 0.5em 0.3em 0.5em;
+      /* padding: 0.2em 0.5em 0.3em 0.5em; */
+      padding: 0;
       width: auto;
     }
     .reveal pre.compact {
@@ -1781,6 +2285,14 @@ Log
     .reveal .resize40 { /* for pics */
       width: 40%;
       height: 40%;
+    }
+    .reveal .resize10 { /* for pics */
+      width: 10%;
+      height: 10%;
+    }
+
+    .hljs-comment {  /* I don't like the default grey */
+      color: #c9a929;
     }
 
   </style>
