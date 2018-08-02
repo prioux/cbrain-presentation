@@ -1960,9 +1960,10 @@ end
     <h4>A framework for deploying tools</h4>
     <div class="cell">
     <img src="https://boutiques.github.io/images/logo.png" class="resize10" style="float: left">
-    This was started in 2015 by Tristan Glatard (now a PI at Concordia)
-    while he worked with us here at CBRAIN. The CBRAIN implementation was performed by
-    R&eacute;mi Bernard.
+    A 2015 project by Tristan Glatard (now a PI at Concordia)
+    while he worked with us here at CBRAIN.<br>
+    The CBRAIN integration was written by
+    R&eacute;mi Bernard and Tristan Aumentado-Armstrong.
     </div>
     <p>
     <ul>
@@ -2052,7 +2053,8 @@ end
     <pre><code class="ruby" data-trim>
 class SomeSuperSomething
 
-  Revision_info = CbrainFileRevision[ __FILE__ ] # btw coloring error
+  # All CBRAIN ruby code has a line like this:
+  Revision_info = CbrainFileRevision[ __FILE__ ] # ignore the coloring error
 
 end
 
@@ -2136,14 +2138,14 @@ task.addlog("Tried to transfer files, failed.")
 <section>
 
   <section id="skipped1">
-    <h1>CBRAIN</h1>
-    <h2>Not described</h2>
+    <h2>CBRAIN: Not described</h2>
     Many other CBRAIN features were not covered in this presentation.
     <p>
     <ul>
       <li>CbrainFormBuilder: helps programmers make forms for tasks</li>
       <li>Task subtasking system (Glatard, Quirion)</li>
       <li>Secure communication tunnels (SSH agents with locks etc)</li>
+      <li>Support for Singularity and Docker containers in tasks</li>
       <li>Per-resource user licenses</li>
       <li>Rich console commands extensions for admin and devs</li>
       <li>Internal invitation system for collaborations</li>
