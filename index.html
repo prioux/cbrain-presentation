@@ -27,7 +27,7 @@
   <section id="toc">
     <h2>A presentation in three parts:</h2>
     <ol>
-      <li>Quick intro to <strong>Ruby</strong> (15 slides)</li>
+      <li>Quick intro to <strong>Ruby</strong> (16 slides)</li>
       <li>Quick intro to <strong>Rails</strong> (18 slides)</li>
       <li><strong>CBRAIN</strong> as a platform (104 slides !)</li>
     </ol>
@@ -400,6 +400,49 @@ User.find_by_login('mmonroe') # now the method does exist.
 <!-- ****************************** -->
 
   <section id="ruby15">
+    <h2>Review of optional syntax</h2>
+
+    <div class="nonfragment">
+      <h5>A full ruby statement:</h5>
+      <pre class="transp"><code class="ruby" data-trim>
+          val = obj.method(arg1,arg2) { code block }
+      </code></pre>
+    </div>
+
+    <div class="fragment">
+      <h5>If the code block is optional:<h5>
+      <pre class="transp"><code class="ruby" data-trim>
+          val = obj.method(arg1,arg2)
+      </code></pre>
+    </div>
+
+    <div class="fragment">
+      <h5>If the arguments are optional:</h5>
+      <pre class="transp"><code class="ruby" data-trim>
+val = obj.method()
+val = obj.method     # Important: this still invokes the method!
+      </code></pre>
+    </div>
+
+    <div class="fragment">
+      <h5>If <em>obj</em> happens to be <em>self</em>:</h5>
+      <pre class="transp"><code class="ruby" data-trim>
+          val = method
+      </code></pre>
+    </div>
+
+    <div class="fragment">
+      <h5>If we don't care about the returned value:</h5>
+      <pre class="transp"><code class="ruby" data-trim>
+          method
+      </code></pre>
+    </div>
+
+  </section>
+
+<!-- ****************************** -->
+
+  <section id="ruby16">
     <h2>Domain Specific Languages</h2>
     Ruby's syntactic flexibility makes it ideal for elegant <em>DSL</em>s.
     <pre class="transp"><code class="ruby" data-trim>
