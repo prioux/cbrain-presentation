@@ -315,7 +315,7 @@ end  # returns the string "f4" which is 244 in hexadecimal
 #  +2
 ["Z", "4", "+"].each_with_index do |c,i|
    puts(c + i.to_s)
-do
+end
     </code></pre>
   </section>
 
@@ -387,7 +387,7 @@ obj=Something.new
 obj.oh_no!('sorry man')  # prints "Eh bud, I got method oh_no! but it does't exist."
     </code></pre>
     <p>
-    This is often use to provide <em>dynamic</em> capabilities to classes.
+    This is often used to provide <em>dynamic</em> capabilities to classes.
     <p>
     Methods can be created the first time they are missing, and then the
     following times the method will exist and will respond quickly.
